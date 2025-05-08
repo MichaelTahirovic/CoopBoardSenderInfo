@@ -1,14 +1,17 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const Salutation = document.querySelector(".np-view-question--3")?.textContent.trim();
-    const JobContactFirstName = document.querySelector(".np-view-question--4")?.textContent.trim();
-    const JobContactLastName = document.querySelector(".np-view-question--5")?.textContent.trim();
-    const ContactTitle = document.querySelector(".np-view-question--6")?.textContent.trim();
-    const Website = document.querySelector(".np-view-question--9")?.href.trim();
-    const AddressLineOne = document.querySelector(".np-view-question--10")?.textContent.trim();
-    const City = document.querySelector(".np-view-question--12")?.textContent.trim();
-    const ProvinceState = document.querySelector(".np-view-question--13")?.textContent.trim();
-    const PostalCodeZipCode = document.querySelector(".np-view-question--14")?.textContent.trim();
-    const Country = document.querySelector(".np-view-question--15")?.textContent.trim();
+document.addEventListener("DOMContentLoaded", parseContact);
+    
+async function parseContact() {
+    const Salutation = document.querySelector(".np-view-question--3");
+    const JobContactFirstName = document.querySelector(".np-view-question--4");
+    const JobContactLastName = document.querySelector(".np-view-question--5");
+    const ContactTitle = document.querySelector(".np-view-question--6");
+    const Website = document.querySelector(".np-view-question--9");
+    const AddressLineOne = document.querySelector(".np-view-question--10");
+    const City = document.querySelector(".np-view-question--12");
+    const ProvinceState = document.querySelector(".np-view-question--13");
+    const PostalCodeZipCode = document.querySelector(".np-view-question--14");
+    const Country = document.querySelector(".np-view-question--15");
+    const test = document.querySelector(".eat--bootstrap");
 
     console.log({
         Salutation,
@@ -20,6 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
         City,
         ProvinceState,
         PostalCodeZipCode,
-        Country
-    });
-});
+        Country,
+        test
+    })};
