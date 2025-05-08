@@ -28,16 +28,15 @@
  9. Click "Copy to Clipboard" and paste your nicely formatted contact info!
 
 # Copy Formatting
-----------------------------
  The default formatting is as follows:
-""" 
+ ----------------------------
  FirstName LastName
  Contact Title
  Address
  City, Province PostalCode
 
  Dear Salutation LastName,
-"""
+ ----------------------------
  You can customize this by modifying the format in popup.js if desired.
 
  Note: This is a roughly made extension that might not work all the time but that's good enough for me so it better be good enough for you.
