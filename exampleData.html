@@ -1,0 +1,9158 @@
+<!DOCTYPE html>
+<body class="nPostingController page--73 is--my-account is--hidden is--header-sticky loaded" style="overflow: initial; position: relative;">
+
+		
+    <div class="is--spiral--robot">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="keepMeLoggedInModal" class="modal js--modal display--none js--ui-modal is--spiral--robot eat--bootstrap" data-ui-backdrop="true" data-ui-show="orbisAppSr.showModal('keepMeLoggedInModal');" data-ui-hide="orbisAppSr.hideModal('keepMeLoggedInModal');" data-append-to-body="true">
+<div class="modal__inner">
+<button type="button" class="modal__btn--close js--close--modal"><i class="material-icons">close</i></button>
+<h3 class="modal__title ">Keep Me Logged In</h3>
+
+
+<div class="margin--b--m">
+<span id="timeoutMessage" style="color: red; font-size: 20px;">You will be logged out in <span id="secondsLeft">60</span> seconds.</span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<button id="button_3550589613237397" name="" value="" title="" type="button" class="btn__default--text btn--default  kmliBtn" onclick="keepMeLoggedInClicked();" style="">
+
+
+Keep Me Logged In
+
+
+</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<button id="button_5207616943667368" name="" value="" title="" type="button" class="btn__default--text btn--default  closeKmliBtn display--none" onclick="$('#keepMeLoggedInModal').uiHide();;" style="">
+
+
+Close
+
+
+</button>
+
+
+
+
+</div>
+</div>
+
+
+
+<script type="text/javascript">
+var stimedout = false;
+var keepMeLoggedIn;
+ if (keepMeLoggedIn == null || keepMeLoggedIn == undefined) {
+    if (window.XMLHttpRequest) {
+        keepMeLoggedIn = new XMLHttpRequest();
+    }
+    else if (window.ActiveXObject) {
+        keepMeLoggedIn = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+}
+keepMeLoggedIn.onreadystatechange = function () { };
+var interruptTimeout = false;
+var countdownNum = 59;
+var countdownInterval;
+var sessionInterval;
+
+function sessionTimeoutPopup() {
+ interruptTimeout = false;
+ beginCountdown();
+ if (stimedout == false) {
+     $("#keepMeLoggedInModal").uiShow();
+     setTimeout ( "sessionTimeoutTimeout()", (60 * 1000));
+ }
+}
+
+function beginCountdown()
+{
+ countdownInterval = setInterval("countdown()", 1000);
+}
+
+function countdown()
+{
+ $("#secondsLeft").html(countdownNum);
+ countdownNum--;
+}
+
+function stopCountdown()
+{
+ $("#secondsLeft").html("60");
+ countdownNum = 59;
+ clearInterval(countdownInterval);
+}
+
+function gotoMyAccount() {
+ document.location='/myAccount';
+}
+
+function sessionTimeoutTimeout() {
+ if (!interruptTimeout) {
+     stopCountdown();
+     stimedout = true;
+     $("span#timeoutMessage").html("Your session has expired. You have been logged out. <br /><a href='/myAccount'>Click here to log in</a>");
+     $(".kmliBtn", "#keepMeLoggedInModal").addClass("display--none");
+     $(".closeKmliBtn", "#keepMeLoggedInModal").removeClass("display--none");
+     keepMeLoggedIn.open('post', '/logout.htm');
+     keepMeLoggedIn.send(null);		 	
+ }
+}
+
+function keepMeLoggedInClicked() {
+ clearInterval(sessionInterval);
+ 
+  keepMeLoggedIn.open('get', '/keepAlive.htm?rand=' + Math.floor(Math.random()*100000));
+  keepMeLoggedIn.send(null);
+ 
+ $("#keepMeLoggedInModal").uiHide();
+ sessionInterval = setInterval ( "sessionTimeoutPopup()", (1739 * 1000));
+ stopCountdown();
+ interruptTimeout = true;
+}
+
+$("#keepMeLoggedInModal").uiHide();
+sessionInterval = setInterval ( "sessionTimeoutPopup()", (1739 * 1000));
+</script>
+    </div>
+
+
+
+
+<div class="is--spiral--robot eat--bootstrap">
+    <header class="header__container clearfix">
+            
+        <div class="header--branding display--flex dist--between" style="background:#444;">
+            
+            <div class="display--flex align--middle">
+                
+                    <div class="logo__holder color--bg--none">
+                        <a href="/myAccount">
+                            <img src="/site/images/NavLogor173908490628174483084572092562032447696175852422074r.png" alt="">
+                        </a>
+                    </div>
+                
+                
+                    
+            </div>
+                
+            <div class="display--flex align--middle">
+
+                    
+                <div class="mobile-controls">
+                    <!-- <button class="mobile-controls__btn js--btn-toggle-side-menu__search"><i class="material-icons">search</i></button> -->
+                    <button class="mobile-controls__btn js--btn-toggle-side-menu "><i class="material-icons">menu</i></button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="header--admin js--admin-header has--tabs no--search sticky" style="left:0;">
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="tabs_44203082040608044" class="cont-inception  js--ui-tabs" style="">
+<button type="button" class="arrow-left" style="display: inline-block;"><i class="material-icons">keyboard_arrow_left</i></button>
+<button type="button" class="arrow-right" style="display: inline-block;"><i class="material-icons">keyboard_arrow_right</i></button>
+<div class="tab-list-cont">	
+<div class="tab-list " style="">
+    
+
+
+<style>
+.icon-a{
+font-size: 0;
+width: 75px; 
+height: 40px;
+}
+</style>
+
+<div id="outerTemplateTabs_overview" class="tab-item js--ui-tab " style="">
+<a href="javascript:void(0);" class="items   " style="" data-show-section="" onclick=" orbisAppSr.buildForm({'action':'_-_-HXLrPsIo7BfP7lcDTEOPNfTbkxCuuSnZpXlDpc5NCDSo8l9L8bBYu4zpl0lpBhzcrFKq7pkHjHTfp1Al-wtbRsrtyoVn2Nqx8riUWQ6DQYh-KXvL15L6U11jPXQTZbGsahi4UjI8B58ZLWHLTja6Bv14vn0Momyhwfbv2tCm0HrzcaLEfp45vW8uwYt_CN5xxLviN6ZcLnPb6WkWJiDXCvfQVrpItXU','rand':'6545889936501506'}, '/myAccount/dashboard.htm', '', '').submit();">
+
+Overview
+
+</a>
+</div>
+
+
+<!-- Student Tabs  -->
+
+
+
+
+<style>
+.icon-a{
+font-size: 0;
+width: 75px; 
+height: 40px;
+}
+</style>
+
+<div id="displayStudentMyCoop" class="tab-item js--ui-tab " style="">
+<a href="javascript:void(0);" class="items   " style="" data-show-section="" onclick=" orbisAppSr.buildForm({'action':'_-_-60mA5ebZGKIh1N5I5rJ72LRarAzkK_P1WVB5ScT1jqXLdPIEiyiEXWUR12uqSVPXhCNWA4hOkO108Bzn-xyua-GSJ074Fb0FX7nlVvrt2Q5oxwGPGaOHyyh_XSZ59tj3PbpxuVSGnYR0zQ06OFUmMfDsTEju2ShRjKLqaF6ZApEKKu2lGvEOVbrh7yagBypgoS9YGk_Oh-2Um4sg0o52aArSph72m4Z5Jw','rand':'06725745093205504'}, '/myAccount/dashboard.htm', '', '').submit();">
+Co-op
+</a>
+</div>
+
+
+
+
+<style>
+.icon-a{
+font-size: 0;
+width: 75px; 
+height: 40px;
+}
+</style>
+
+<div id="displayStudentMyField" class="tab-item js--ui-tab " style="">
+<a href="javascript:void(0);" class="items   " style="" data-show-section="" onclick=" orbisAppSr.buildForm({'action':'_-_-SJtvrtVLoDsFN9usCSfxlzKRwRQ1WS3siq3jfQCVeo1wuv4AqBjdJYevfJZugjk3abOZNhvtWuR6CdSTZv7iPrdE-OZxI1DVhQRB-izD5P8oaejQMvsNEjje-1OJM68DK_lFZeFI3dKTJcKabDRm1ol9BB9ipcqkWpH5TsBdxZyZ_fLHTXSZ7bw6-F56jtxDeeN3yFWBL3o6PVCTaM4ryKfNhk-fJHlgrYE','rand':'0880010875740257'}, '/myAccount/dashboard.htm', '', '').submit();">
+Experiential Learning
+</a>
+</div>
+
+
+
+
+
+<style>
+.icon-a{
+font-size: 0;
+width: 75px; 
+height: 40px;
+}
+</style>
+
+<div id="displayStudentMyDocuments" class="tab-item js--ui-tab " style="">
+<a href="javascript:void(0);" class="items   " style="" data-show-section="" onclick=" orbisAppSr.buildForm({'action':'_-_-X9tTEtmxCFxQ8YlMMW7rhMMffeUChXEvtMYnpQ9a17p5EHcf52fDua51vX7NCPb2ls-ILCVIPvbZGkB_brsBA10_XJK68ZWfFFujsRReRvk1XKh1ctYMi1Chv_PRZoY9YoL_MUSAnPmF5DgjPkqKdwHfGp0rtSnV1VKtnkEgDHHOBymZxJlmhrHjzVDuiIXZB4i9Er2iGxf5iOUKwDFYPHC80c9G9qFIIb5ZEHvY','rand':'013165283339501732'}, '/myAccount/dashboard.htm', '', '').submit();">
+Documents
+</a>
+</div>
+
+
+
+
+<style>
+.icon-a{
+font-size: 0;
+width: 75px; 
+height: 40px;
+}
+</style>
+
+<div id="displayStudentMyPostingApplications" class="tab-item js--ui-tab " style="">
+<a href="javascript:void(0);" class="items   " style="" data-show-section="" onclick=" orbisAppSr.buildForm({'action':'_-_-khe4QCdBUK2uGPPOUIq6OqZ1WRSscs18W9F3fkj2HVA-DUbf3TucdI4akkO5Ya2FDdJdHzr5tgHeSOTeuFspgnNIQtRbRKodeEyFRVoRlGpGtLp2wBdlx7ELEO7xHEhuOvCNQER-iKqdw16BlypMqvanoFlE6GNS3xTA_c_fLqt4-9NiqeV9AtgzsDvSWPALqENQu-1G0MI9Ci3FZwHUwUaW0V13CEjjITMJ6UCYvDWSku32hBJfvbY','rand':'027819090782251088'}, '/myAccount/dashboard.htm', '', '').submit();">
+Job/Volunteer Applications
+</a>
+</div>
+
+
+
+
+<style>
+.icon-a{
+font-size: 0;
+width: 75px; 
+height: 40px;
+}
+</style>
+
+<div id="displayStudentMyInterviews" class="tab-item js--ui-tab " style="">
+<a href="javascript:void(0);" class="items   " style="" data-show-section="" onclick=" orbisAppSr.buildForm({'userType':'student','action':'_-_-UmvpkJjFmv85eo3Cmv1CJQv_qRVgZfavVWf4qG_uxsUrlQTWl_Y9wfS2Ma__0FlpSe2h94A9LJyLPbv-KFJP5emiG9JPSNMOZAtJlqkJKDj4R0_6uD_tFHyPVsdlcQ_fyf7v6BBdIEyVNy9eDup-dqtdYNikQzVc0tdr-Yea3BTFl4mWpkLJ58v2_ucFLdq2AB-N-dWIKBoZHXHR0ZhB8gISuqrU08_C_ZgOtGT6MQ','rand':'03632412410690933'}, '/myAccount/dashboard.htm', '', '').submit();">
+Interviews
+    
+
+</a>
+</div>
+
+
+
+
+
+
+<style>
+.icon-a{
+font-size: 0;
+width: 75px; 
+height: 40px;
+}
+</style>
+
+<div id="displayStudentMyAppointments" class="tab-item js--ui-tab " style="">
+<a href="javascript:void(0);" class="items   " style="" data-show-section="" onclick=" orbisAppSr.buildForm({'action':'_-_-bjAhMl0SfnwjD2SMXqXQjN-eDJ5W58Rk9oE26vnIHl8CPpZCfmBIDuipFmpyOjKE_zsCVhXNYmqDRQgDAiIdpHi8Y8rXCUKhnpavt0Gz-nO6oq8NBvZF2JaiE2QHsDwwD91ATKYJ-LOSpWJCKMRsInF0qH5Xa3Mt0wGZLT2Yg7mOYGO6Yz2-pUswOUBFkxUCxnIGiXFJAjmBj-23iox6GDEWFgbtXnTiSMqI0OLEh8ZR','rand':'1472891325516501'}, '/myAccount/dashboard.htm', '', '').submit();">
+Appointments
+</a>
+</div>
+
+
+
+
+<style>
+.icon-a{
+font-size: 0;
+width: 75px; 
+height: 40px;
+}
+</style>
+
+<div id="displayStudentMyEvents" class="tab-item js--ui-tab " style="">
+<a href="javascript:void(0);" class="items   " style="" data-show-section="" onclick=" orbisAppSr.buildForm({'action':'_-_-pYbqHklU5c2SjN1FKXz_kYcc8pLt_KQu4hX8rQeRr9tUn_PCwCZFOqtqot0UhafDTrgVqKDup1mwvqN93RmZL_K5RD3H8trZnIYbUj_oJmsmYgs2LE5iXJpCsTJF_23lSiwArZDPcQVYXc7g9ZdL-vAI0sWsWDlmyGzf6quTP7l7eAcYVH55VB2pD7C3_3bZYG5JPdmrGHcUICqiBgGXtCfks1UYA74pO344','rand':'6645622116322263'}, '/myAccount/dashboard.htm', '', '').submit();">
+Event Registration
+</a>
+</div>
+
+
+
+
+<style>
+.icon-a{
+font-size: 0;
+width: 75px; 
+height: 40px;
+}
+</style>
+
+<div id="displayStudentMyProgramParticipation" class="tab-item js--ui-tab " style="">
+<a href="javascript:void(0);" class="items   " style="" data-show-section="" onclick=" orbisAppSr.buildForm({'action':'_-_-_mSW3VkMCHTKvuXiNyRkua5r_rKm1d4-4GW69Xu2pK1JeI-U9KlG6Sn_jS-VPlszLbLdTpUYoWHVmQgfYvm7HmL-9HaoFrS1jud7WLyuHzZ_CrWBumZuC1TGevqV8JXm8jjkPmefvVao7NGzmjFKIGoqTtxCqfXhfqNrIT7e_p-7vdg4_smcCa3vXSkK_eF1Oev-Xb2-Cio601dH2IdHPsuc0aAg7SDqHtDWA67CidqJA-JtmhW_XwA','rand':'044416549929268356'}, '/myAccount/dashboard.htm', '', '').submit();">
+Program Participation
+</a>
+</div>
+
+
+
+
+
+
+
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+orbisAppSr.tabs.functions.init('tabs_44203082040608044');
+});
+</script>
+                
+        </div>
+
+        <div class="navigation--mobile ps ps--active-y" aria-hidden="true">
+            <h5 class="color--font--white padding--l--s quick-links-heading" style="line-height:60px;">Quick Navigation</h5>
+            <button type="button" class="btn--close-mobile-menu js--btn-toggle-side-menu"><i class="material-icons">close</i></button>
+                
+            <div id="myAccountNav" class="header--side-nav  js--side-nav">
+                <div class="user-box" style="padding:16px;">
+                    <div class="display--flex dist--between margin--b--m" style="padding-right:8px;">
+                        
+                            
+                            
+                            
+                        
+                        
+                    </div>
+
+                    
+
+                    <span class="display--block color--font--white h2">Michael Tahirovic</span>
+
+
+                    
+
+                    
+
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+                </div>
+                
+                <nav class="nav--my-account" style="color:#fff !important;">
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ul class="nav__list ">
+
+
+
+
+    
+    <li class="nav__list-item   ">
+        
+        
+        
+        
+         
+         
+          
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  sel_menu_dashboard" href="/myAccount/dashboard.htm">Dashboard</a>
+        
+        
+    </li>
+
+
+
+
+
+    
+    <li class="nav__list-item   ">
+        
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  " href="/myAccount/experience-overview.htm">Laurier Experience Record</a>
+        
+        
+    </li>
+
+
+
+
+
+    
+    <li class="nav__list-item is--parent  ">
+        
+        
+            <button type="button" aria-label="Toggle Dropdown" class="btn__default--text btn--info plain js--btn--nav-dropdown-arrow ">
+                <i class="material-icons">keyboard_arrow_down</i>
+            </button>
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  " href="/myAccount/postings.htm">Job and Volunteer Postings</a>
+        
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ul class="nav__list is--child">
+
+
+
+
+    
+    <li class="nav__list-item is--parent  ">
+        
+        
+            <button type="button" aria-label="Toggle Dropdown" class="btn__default--text btn--info plain js--btn--nav-dropdown-arrow ">
+                <i class="material-icons">keyboard_arrow_down</i>
+            </button>
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  " href="/myAccount/postings/off-campus.htm">Off-Campus Job Postings</a>
+        
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ul class="nav__list is--child">
+
+
+
+
+    
+    <li class="nav__list-item   ">
+        
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  " href="/myAccount/postings/off-campus/applications.htm">Job Applications</a>
+        
+        
+    </li>
+
+
+
+
+
+    
+    <li class="nav__list-item   ">
+        
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  " href="/myAccount/postings/off-campus/interviews.htm">Interviews</a>
+        
+        
+    </li>
+
+
+
+</ul>
+            
+        
+        
+    </li>
+
+
+
+
+
+    
+    <li class="nav__list-item is--parent  ">
+        
+        
+            <button type="button" aria-label="Toggle Dropdown" class="btn__default--text btn--info plain js--btn--nav-dropdown-arrow ">
+                <i class="material-icons">keyboard_arrow_down</i>
+            </button>
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  " href="/myAccount/postings/on-campus.htm">On-Campus Job Postings</a>
+        
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ul class="nav__list is--child">
+
+
+
+
+    
+    <li class="nav__list-item   ">
+        
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  " href="/myAccount/postings/on-campus/applications.htm">Applications</a>
+        
+        
+    </li>
+
+
+
+
+
+    
+    <li class="nav__list-item   ">
+        
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  " href="/myAccount/postings/on-campus/interviews.htm">Interviews</a>
+        
+        
+    </li>
+
+
+
+</ul>
+            
+        
+        
+    </li>
+
+
+
+
+
+    
+    <li class="nav__list-item is--parent  ">
+        
+        
+            <button type="button" aria-label="Toggle Dropdown" class="btn__default--text btn--info plain js--btn--nav-dropdown-arrow ">
+                <i class="material-icons">keyboard_arrow_down</i>
+            </button>
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  " href="/myAccount/postings/volunteer-postings.htm">Volunteer Postings</a>
+        
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ul class="nav__list is--child">
+
+
+
+
+    
+    <li class="nav__list-item   ">
+        
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  " href="/myAccount/postings/volunteer-postings/applications.htm">Applications</a>
+        
+        
+    </li>
+
+
+
+
+
+    
+    <li class="nav__list-item   ">
+        
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  " href="/myAccount/postings/volunteer-postings/interviews.htm">Interviews</a>
+        
+        
+    </li>
+
+
+
+</ul>
+            
+        
+        
+    </li>
+
+
+
+
+
+    
+    <li class="nav__list-item   ">
+        
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  " href="/myAccount/postings/myDocuments.htm">Documents</a>
+        
+        
+    </li>
+
+
+
+</ul>
+            
+        
+        
+    </li>
+
+
+
+
+
+    
+    <li class="nav__list-item is--parent  ">
+        
+        
+            <button type="button" aria-label="Toggle Dropdown" class="btn__default--text btn--info plain js--btn--nav-dropdown-arrow ">
+                <i class="material-icons">keyboard_arrow_down</i>
+            </button>
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  " href="/myAccount/career.htm">Career Centre</a>
+        
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ul class="nav__list is--child">
+
+
+
+
+    
+    <li class="nav__list-item   ">
+        
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  " href="/myAccount/career/resources.htm">Career Resources, Handouts and Event Recordings</a>
+        
+        
+    </li>
+
+
+
+
+
+    
+    <li class="nav__list-item   ">
+        
+        
+        
+        
+         
+         
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  sel_menu_appointments" href="/myAccount/career/appointments.htm">Appointments</a>
+        
+        
+    </li>
+
+
+
+
+
+    
+    <li class="nav__list-item is--parent  ">
+        
+        
+            <button type="button" aria-label="Toggle Dropdown" class="btn__default--text btn--info plain js--btn--nav-dropdown-arrow ">
+                <i class="material-icons">keyboard_arrow_down</i>
+            </button>
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  " href="/myAccount/career/events.htm">Event Calendars</a>
+        
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ul class="nav__list is--child">
+
+
+
+
+    
+    <li class="nav__list-item   ">
+        
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  " href="/myAccount/career/events/events.htm">Career Centre Events</a>
+        
+        
+    </li>
+
+
+
+
+
+    
+    <li class="nav__list-item   ">
+        
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  " href="/myAccount/career/events/employer-events.htm">Employer Events</a>
+        
+        
+    </li>
+
+
+
+</ul>
+            
+        
+        
+    </li>
+
+
+
+</ul>
+            
+        
+        
+    </li>
+
+
+
+
+
+    
+    <li class="nav__list-item is--parent  is--expanded">
+        
+        
+            <button type="button" aria-label="Toggle Dropdown" class="btn__default--text btn--info plain js--btn--nav-dropdown-arrow is--expanded">
+                <i class="material-icons">keyboard_arrow_down</i>
+            </button>
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard is--active " href="/myAccount/co-op.htm">Co-op</a>
+        
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ul class="nav__list is--child">
+
+
+
+
+    
+    <li class="nav__list-item   ">
+        
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  " href="/myAccount/co-op/overview.htm">Overview</a>
+        
+        
+    </li>
+
+
+
+
+
+    
+    <li class="nav__list-item   ">
+        
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  " href="/myAccount/co-op/myDocuments.htm">My Documents</a>
+        
+        
+    </li>
+
+
+
+
+
+    
+    <li class="nav__list-item   is--expanded">
+        
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard is--active " href="/myAccount/co-op/postings.htm">Postings</a>
+        
+        
+    </li>
+
+
+
+
+
+    
+    <li class="nav__list-item   ">
+        
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  " href="/myAccount/co-op/applications.htm">Applications</a>
+        
+        
+    </li>
+
+
+
+
+
+    
+    <li class="nav__list-item   ">
+        
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  " href="/myAccount/co-op/interviews.htm">Interviews</a>
+        
+        
+    </li>
+
+
+
+
+
+    
+    <li class="nav__list-item   ">
+        
+        
+        
+        
+         
+         
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  sel_menu_appointments" href="/myAccount/co-op/appointments.htm">Appointments</a>
+        
+        
+    </li>
+
+
+
+
+
+    
+    <li class="nav__list-item is--parent  ">
+        
+        
+            <button type="button" aria-label="Toggle Dropdown" class="btn__default--text btn--info plain js--btn--nav-dropdown-arrow ">
+                <i class="material-icons">keyboard_arrow_down</i>
+            </button>
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  " href="/myAccount/co-op/events.htm">Event Calendars</a>
+        
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ul class="nav__list is--child">
+
+
+
+
+    
+    <li class="nav__list-item   ">
+        
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  " href="/myAccount/co-op/events/waterloo.htm">Waterloo Events</a>
+        
+        
+    </li>
+
+
+
+
+
+    
+    <li class="nav__list-item   ">
+        
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  " href="/myAccount/co-op/events/employer.htm">Co-op Employer Events</a>
+        
+        
+    </li>
+
+
+
+</ul>
+            
+        
+        
+    </li>
+
+
+
+
+
+    
+    <li class="nav__list-item   ">
+        
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  " href="/myAccount/co-op/ptcoop.htm">Fundamentals Course</a>
+        
+        
+    </li>
+
+
+
+
+
+    
+    <li class="nav__list-item   ">
+        
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  " href="/myAccount/co-op/resources.htm">Resources</a>
+        
+        
+    </li>
+
+
+
+</ul>
+            
+        
+        
+    </li>
+
+
+
+
+
+    
+    <li class="nav__list-item is--parent  ">
+        
+        
+            <button type="button" aria-label="Toggle Dropdown" class="btn__default--text btn--info plain js--btn--nav-dropdown-arrow ">
+                <i class="material-icons">keyboard_arrow_down</i>
+            </button>
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  " href="/myAccount/co-curricular.htm">Co-curricular Experiences</a>
+        
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ul class="nav__list is--child">
+
+
+
+
+    
+    <li class="nav__list-item   ">
+        
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  " href="/myAccount/co-curricular/overview.htm">Overview</a>
+        
+        
+    </li>
+
+
+
+
+
+    
+    <li class="nav__list-item   ">
+        
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  " href="/myAccount/co-curricular/catalogue.htm">Co-curricular Catalogue</a>
+        
+        
+    </li>
+
+
+
+
+
+    
+    <li class="nav__list-item   ">
+        
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  " href="/myAccount/co-curricular/ccr.htm">Co-curricular Records</a>
+        
+        
+    </li>
+
+
+
+</ul>
+            
+        
+        
+    </li>
+
+
+
+
+
+    
+    <li class="nav__list-item   ">
+        
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  " href="/myAccount/certificates.htm">Certificate Programs</a>
+        
+        
+    </li>
+
+
+
+
+
+    
+    <li class="nav__list-item   ">
+        
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  " href="/myAccount/employment-records.htm">On-Campus Employment Records</a>
+        
+        
+    </li>
+
+
+
+
+
+    
+    <li class="nav__list-item   ">
+        
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  " href="/myAccount/curricular.htm">Curricular Experiences</a>
+        
+        
+    </li>
+
+
+
+
+
+    
+    <li class="nav__list-item   ">
+        
+        
+        
+        
+         
+         
+         
+         
+          
+         
+          
+          
+         
+         
+        
+        <a class="clickGuard  " href="/logout.htm">Logout</a>
+        
+        
+    </li>
+
+
+
+</ul>
+
+                    
+                </nav>
+            </div>
+        <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 592px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 542px;"></div></div></div>
+        <div class="settings-menu sticky">
+            <div class="settings-menu sticky">
+                <div class="drop-down">
+                    <button type="button" class="btn__hero btn--info drop-down__btn js--btn-toggle-side-menu has--ripple btn--ripple  has-ripple" style="padding:8px; box-shadow:none;" aria-label="Toggle Main Menu">
+                        <i class="material-icons icon--drop-down">menu</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        
+
+    </header>
+
+</div>
+<main class="main--alt  is--fullscreen">
+     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+em {font-weight:normal; padding-right:0px; vertical-align:baseline;}
+div.modal em {font-weight:bold; padding-right:1em; vertical-align:top;}
+</style>
+<script type="text/javascript">
+var controllerPath = "/myAccount/co-op/postings.htm";
+</script>
+    
+<!-- English or & French  -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 		 -->
+
+
+
+
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="alert alert-block"><p><span style="font-size:14px;">If the employer has chosen to have applications collected through their own website please click the <strong>Apply</strong> button at the top of the page rather than the website link in the posting. Clicking Apply will redirect you to the employer's site and will mark on the job posting that you expressed interest in applying.</span></p></div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="https://orbisv4head.blob.core.windows.net/core/scripts/jquery/jquery.printElement-1.2/jquery.printElement.min-231.js" charset="UTF-8"></script>
+<script type="text/javascript">orbisScriptManager.scriptLoaded('https://orbisv4head.blob.core.windows.net/core/scripts/jquery/jquery.printElement-1.2/jquery.printElement.min-231.js');</script>
+<script type="text/javascript" src="/core/orbis/scripts/orbisNotePopups-2.js" charset="UTF-8"></script>
+<script type="text/javascript">orbisScriptManager.scriptLoaded('/core/orbis/scripts/orbisNotePopups-2.js');</script>
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+$('.atooltip').tooltip();
+});
+</script>
+
+
+
+
+<div class="is--spiral--robot">
+
+
+
+
+
+
+
+
+<style type="text/css">
+
+.dashboard-header{
+min-height: unset !important; 
+height: auto !important; 
+}
+
+.ui--user-profile-header .dashboard-header__container--primary {
+max-width: 100% !important;
+}
+
+.dashboard-header__profile-widget {
+margin-right: 24px;
+}
+
+.dashboard-header__profile-widget-image {
+/*width: 88px;
+height: 88px;*/
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.icon-only-btn{
+order: 2;
+color: #fff;
+background: none;
+border: 0px solid white;
+border-radius: 50%;
+width: 40px;
+height: 40px;
+transition: all 200ms ease;
+}
+.icon-only-btn:hover, .icon-only-btn:focus{
+border: 8px solid white;
+transition: all 200ms ease;
+}
+.dashboard-header__profile-widget__btn--more{
+width: 32px;
+height: 32px;
+background: white;
+color: rgba(0,0,0,0.8);
+border-radius: 16px;
+position: absolute;
+bottom: -8px;
+right: -12px;
+transform: scale(1);
+transition: all 200ms ease;
+}
+
+.dashboard-header__profile-widget__btn--more:hover, .dashboard-header__profile-widget__btn--more:focus{
+transform: scale(1.5);
+transition: all 200ms ease;
+}
+
+.dashboard-header__profile-information-name-content {
+flex-grow: 1;
+}
+
+.object--cover {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+.dashboard-header__profile-widget-image-container {
+width: 100%;
+height: 100%;
+overflow: hidden;
+border-radius: 100%;
+}
+
+.ui--user-profile-header .dashboard-header__profile-widget-image.no--image {
+border: none;
+}
+
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="grid_8378437553826155" class="grd     wrap dashboard-header position--relative padding--a--m display--flex align--middle ui--user-profile-header  " style="flex-wrap: wrap !important;">
+
+
+<div class="padding--b--l display--flex width--100 z-index--1">
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="breadcrumbs" class="drop-down js--ui-drop-down " style="">
+<button type="button" id="breadcrumbs-dropdown" class="btn__small--text btn--white outline drop-down__btn js--drop-down__btn   " style="">
+
+    <span class="js--drop-down-title   "><i class="material-icons" style="font-size:10px; transform:translate(-3px,1px);">arrow_back</i>Back to...</span>
+    <i class="material-icons icon--drop-down">keyboard_arrow_down</i>
+
+
+</button>
+<ul aria-controls="breadcrumbs-dropdown" class="drop-down__list js--drop-down__list ">
+
+    
+                
+                    
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li id="dropdownItem_3998604905054215" class="drop-down__item js--dropdown-item  ">
+<a href="javascript:void(0);" onclick=" orbisAppSr.buildForm({'action':'_-_-A4MsDWZTkBX_VuDovPhbh65UUDm6P3--4j3tqclbnK79WGWkKwBdsZviJfbV1fI4H7qglH5oRtWutcFI_nkIRfefo47wW5JTtbX1bWcYp8M_Z0pk7zDEvzCgh8XVW-Q84WXQNnpYg68sifbQ2bKylpIl-xrCuUg4iA0rCT5qJ9GsfaOAFDYiTMliSWftwW5zQosyCMs57Nm-ydVc41MRXxSVEjFSzEY','rand':'8989765092914344'}, '/myAccount/co-op/postings.htm', '', '').submit();;" class=" " style="">
+
+
+                            Jobs Overview
+                        
+
+</a>
+</li>
+                    
+                
+                
+                
+                    
+                        
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li id="dropdownItem_3933135284314233" class="drop-down__item js--dropdown-item  ">
+<a href="javascript:void(0);" onclick=" orbisAppSr.buildForm({'sortDirection':'Forward','searchType':'','action':'_-_-juS6WbOMUL3UUaquBiONEonl3MlmUl5cHcHXEm3TMX4knJfv2kVuZmumw8sR5etGI5qWaEPpWY6Rmo3tyUsXi6DN5Wm37aULoE8_hhBmIootA9Sb_9bOTzNFcMvufkqT9sdBkN5DyIoUxao0ftMzscBDYeA9slqXi4SbGZGOzfAcjTTgmw_wLV9rHaOkRvPNZhVaKuPz4qB5SAzRCHj0tQIla75xTnLXRZQRrQ','rand':'631579951980688'}, '', '', '').submit();;" class=" " style="">
+
+
+                                Back to Search Results
+                            
+
+</a>
+</li>
+                        
+                        
+                     
+                    
+                    
+                    
+                    
+                
+                
+                
+                
+                
+                
+                
+                
+                
+
+                
+
+                
+                    
+                    
+                    
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li id="dropdownItem_4171265597803111" class="drop-down__item js--dropdown-item  ">
+<a href="javascript:void(0);" onclick=" orbisAppSr.buildForm({'action':'_-_-zGsE2CFxxs8YXfA7sBE7GBvYHYHvjaGW-3TfmheTKFjK_WTBZJHdzttELlLUkMh-vclDhT9DrehjBuhHevJc7_dIUukc0wCwa2khkcN2x9JrlQUKU-5Yp5adx4zOzdpJde23Nyk8FZMYfQ1-8hiYiwiKPoY7tKfg11eBggtH0ZdcIa1XPZBhWdzWSRRi-EbwYWCi94FRCBfiV9aDZ-VhX1stQvxYrRpX5h8VMQTbc6c8','rand':'2890902743542183'}, '', '', '').submit();;" class=" " style="">
+
+
+                            New Search
+                        
+
+</a>
+</li>
+                    
+                
+            
+
+</ul>
+</div>
+
+<script type="text/javascript">
+orbisAppSr.dropdown.functions.init('breadcrumbs');
+</script>
+
+
+
+            
+        
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="gridCol_15985663026782426" class="  grd__col--12  dashboard-header__container--primary user--profile display--flex flex--column" style="">
+
+
+<div class="display--flex">
+    <div class="dashboard-header__profile-widget">
+    
+        <div class="display--flex flex--column align--middle" style="max-width: 150px;">
+        
+            <div class="position--relative dashboard-header__profile-widget-image">
+            
+                
+                
+                
+
+                
+                    <i class="material-icons color--font--white position--absolute" style="font-size: 56px;">
+                        wysiwyg
+                    </i>
+                
+                
+                
+                
+            </div>
+            
+            
+            
+            
+                <span class="margin--t--m">
+                    <span class="tag-label border-radius--circle display--flex align--center align--middle info text--medium margin--b--none">
+                        <i class="material-icons ">fiber_manual_record</i>
+                        
+                        Job Posting
+                        
+                    </span>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="dashboard-header__profile-information">
+        <h1 class="h3 dashboard-header__profile-information-name mobile--small-font color--font--white margin--b--s" style="
+            display: flex;
+            align-items: center;
+            margin-bottom: 0 !important;
+        ">
+
+            
+            
+            
+                203132 -
+            
+            
+            
+                
+                Co-op or Intern, M&amp;A and Capital Markets (JR2506)
+            
+            
+            
+        </h1>
+        
+        <h2 class="h6 mobile--small-font color--font--white margin--t--s align--start">
+            
+            
+                BDO Canada LLP
+                
+            
+            
+            
+            
+            
+            
+            
+                
+            
+        </h2>
+        
+        <div>
+            
+            
+                
+                
+                
+                
+                
+                    
+
+
+
+
+
+
+<form class="margin--b--xxl js--ui-form display--none" style="" id="tabMyApplication" method="POST" enctype="multipart/form-data" target="" action="" autocomplete="off" name="" onsubmit="; return $('#tabMyApplication').uiForm('formOnSubmitOnly', function(data){});" data-ajax-form="" novalidate="novalidate">
+<input type="hidden" name="action" value="_-_-WSiktCwa1teHIAI1y_2POGUcEB0Ei_MN2FBKE3Nfjjp6GK41ni6xfgq2959osr-5jskCY7OAkOsCqLlbwS9EzVKB3bpTjMsi9ErNgRf0xgP8lJD4pfqT7nsTgsdr8qfVB3GeCJDic9Lfs675CDqpAfbuzbhpwtcQrA00i-DtsqM5OpQBb1cxUyc4LryFbw5E9jlfjkf3gWxQ3bojilKAlqkE8wp3ip-k"><input type="hidden" name="postingId" value="203132"><input type="hidden" name="sortDirection" value="Forward"><input type="hidden" name="searchType" value=""><input type="hidden" name="accessToPostings" value="infoForPostings"><input type="hidden" name="initialSearchAction" value="_-_-lEdXqGyRNQozNR4kMzk1svKoQ_NVU_mis8h3C2YBkM-5ZRFdzqnO2NdUbHZoqMy4yIJCTthJNvces86ubJ4KAy3Sv9S3wJzdGn9laQKmiXnkp_RtaJXtsGSlKoZybkCWbGPt7SxCZ5hnMNyoV3TuOg4EbBQL-caFjkGRi-i1QCCD44Umqg_aKv7W52hWmd7_CQ4BPvcMuMonA8HPNJotbvpx5JFI-hbgftkjSg"><input type="hidden" name="npfGroup" value="">
+<input type="hidden" name="uiForm" value="true">
+
+
+                    
+</form>
+
+<script type="text/javascript">
+$('#tabMyApplication').uiForm();
+</script>
+                
+            
+                
+
+
+
+
+
+
+<form class="margin--b--xxl js--ui-form display--none" style="" id="otherApplication" method="POST" enctype="multipart/form-data" target="" action="" autocomplete="off" name="" onsubmit="; return $('#otherApplication').uiForm('formOnSubmitOnly', function(data){});" data-ajax-form="" novalidate="novalidate">
+<input type="hidden" name="action" value="_-_-0SRfhASBiBO4mbK2it-ihxjK9hQx3zNQ0RQp6rmWNrwMGeW23MYv7XcxYBggfj5MvDsPXlT75OViFBV5LzK-Yh94Gio1RTvN2vtSscE-GbSE4RkUZLF5zW1Z0_8xBgLSqi5DAxKMokYVT0wsH35OaQrUsg-cFj-tqMIQDB94OrdzTQ3DFKArJ-Os5R6nGZACIlnOZpJfbrG2NOI41lwTyKI"><input type="hidden" name="postingId" value="203132"><input type="hidden" name="sortDirection" value="Forward"><input type="hidden" name="expressedIntention" value="true"><input type="hidden" name="initialSearchAction" value="_-_-lEdXqGyRNQozNR4kMzk1svKoQ_NVU_mis8h3C2YBkM-5ZRFdzqnO2NdUbHZoqMy4yIJCTthJNvces86ubJ4KAy3Sv9S3wJzdGn9laQKmiXnkp_RtaJXtsGSlKoZybkCWbGPt7SxCZ5hnMNyoV3TuOg4EbBQL-caFjkGRi-i1QCCD44Umqg_aKv7W52hWmd7_CQ4BPvcMuMonA8HPNJotbvpx5JFI-hbgftkjSg">
+<input type="hidden" name="uiForm" value="true">
+
+
+                
+</form>
+
+<script type="text/javascript">
+$('#otherApplication').uiForm();
+</script>
+        
+                <script type="text/javascript">
+            
+                    $(document).ready(function(){
+                        $('.applyButton').on('click', function(){
+                            $(this).attr('disabled', true);
+                            
+                                
+                                    $('#tabMyApplication').submit();
+                                
+                                
+                            
+                        });
+                    });
+            
+                </script>
+        
+                
+                    
+                    
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<button id="button_6904498064197606" name="" value="" title="" type="button" class="btn__default--text btn--default  applyButton clickGuard" onclick="" style="">
+
+APPLY 
+
+</button>
+
+                    
+                    
+                    
+                
+            
+            
+        </div>
+        
+    </div>
+</div>
+
+</div>
+
+
+
+
+</div>
+
+
+</div>
+
+<div class="orbisModuleHeader">
+
+
+
+<div class="box boxContent">
+    
+    
+        
+    
+    
+    <div class="row-fluid">
+        <div class="span6">
+            <table class="table table-striped table-bordered table-condensed">
+                <tbody>
+                    
+                        
+                            <tr>
+                                <td width="50%">Job Posting Status:
+                                </td>
+                                <td width="50%"><span class="badge badge-inverse sel_Unsaved_job"> Approved
+                                        
+                                </span></td>
+                            </tr>
+                        
+                    
+                    
+                    
+                    
+                    
+                </tbody>
+            </table>
+            
+        </div>
+        <div class="span6">
+            
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="is--spiral--robot">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<button type="button" id="np_interactions" style="z-index: 223; " aria-label="Actions" class="btn btn--menu--circular always--circular color--bg--default js--interaction-btn display--block sel_ActionButtonTest  ">
+<i class="material-icons">more_vert</i>
+</button>
+
+<nav id="np_interactions_nav" class="nav--interaction color--bg--default js--interaction-menu actions-group--transform-into--sidebar in--data-explorer">
+<h6 aria-hidden="true" class="nav--interaction__title margin--b--xl">Actions</h6>
+<div class="nav--interaction__list" aria-controls="np_interactions">
+    
+
+
+
+    
+    
+    
+    
+    
+    
+        
+
+
+
+
+
+
+<form class="margin--b--xxl js--ui-form display--none" style="" id="tabMyApplication" method="POST" enctype="multipart/form-data" target="" action="" autocomplete="off" name="" onsubmit="; return $('#tabMyApplication').uiForm('formOnSubmitOnly', function(data){});" data-ajax-form="">
+<input type="hidden" name="action" value="_-_-DAWNz51De8XlD3jNtrNxCYWQb7li3DaLkb60feCkANXh6W4WDZ6pl7v-mljuqBB-244Pkjr40YQLrjnWO1y6W3f0SANH9wCbQTCjl4SZwmTGmRmQ3MYChsKas8Xt6zR4jUlAxzaOBSEdiT68zpsyj17OdoDRM0ArMhYRqdsjxhsWWojIlhO93MOHFHdSMIbtjN69upAeBPnx2qG3eXNUucTZuoPst7mG"><input type="hidden" name="postingId" value="203132"><input type="hidden" name="sortDirection" value="Forward"><input type="hidden" name="searchType" value=""><input type="hidden" name="accessToPostings" value="infoForPostings"><input type="hidden" name="initialSearchAction" value="_-_-lEdXqGyRNQozNR4kMzk1svKoQ_NVU_mis8h3C2YBkM-5ZRFdzqnO2NdUbHZoqMy4yIJCTthJNvces86ubJ4KAy3Sv9S3wJzdGn9laQKmiXnkp_RtaJXtsGSlKoZybkCWbGPt7SxCZ5hnMNyoV3TuOg4EbBQL-caFjkGRi-i1QCCD44Umqg_aKv7W52hWmd7_CQ4BPvcMuMonA8HPNJotbvpx5JFI-hbgftkjSg"><input type="hidden" name="npfGroup" value="">
+<input type="hidden" name="uiForm" value="true">
+
+
+        
+</form>
+
+<script type="text/javascript">
+$('#tabMyApplication').uiForm();
+</script>
+    
+
+    
+
+
+
+
+
+
+<form class="margin--b--xxl js--ui-form display--none" style="" id="otherApplication" method="POST" enctype="multipart/form-data" target="" action="" autocomplete="off" name="" onsubmit="; return $('#otherApplication').uiForm('formOnSubmitOnly', function(data){});" data-ajax-form="">
+<input type="hidden" name="action" value="_-_-HXWWJ466401DeA8jdH1LKtvslP5cP6cNwta0vwpyfHL-39EZmFW128Ggqc5oWtjYhCjxJmaqLxcszevVYC3np6l7xZltd1TeOFHvIa9kKdPwCXSHef5ZfxK-WuWo7_FTCAfA4BC5YTTefwmzap11mY3kOtWPyZTc-qldvoxii3WPKb4x4avHc5ySSc0D92mZc6DdB2aJmz3G9YDy2xAz-_8"><input type="hidden" name="postingId" value="203132"><input type="hidden" name="sortDirection" value="Forward"><input type="hidden" name="expressedIntention" value="true"><input type="hidden" name="initialSearchAction" value="_-_-lEdXqGyRNQozNR4kMzk1svKoQ_NVU_mis8h3C2YBkM-5ZRFdzqnO2NdUbHZoqMy4yIJCTthJNvces86ubJ4KAy3Sv9S3wJzdGn9laQKmiXnkp_RtaJXtsGSlKoZybkCWbGPt7SxCZ5hnMNyoV3TuOg4EbBQL-caFjkGRi-i1QCCD44Umqg_aKv7W52hWmd7_CQ4BPvcMuMonA8HPNJotbvpx5JFI-hbgftkjSg">
+<input type="hidden" name="uiForm" value="true">
+
+
+    
+</form>
+
+<script type="text/javascript">
+$('#otherApplication').uiForm();
+</script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+            $('.applyButton').on('click', function(){
+                $(this).attr('disabled', true);
+                $("applyRedirectBtn").attr('disabled', true);
+                
+                    
+                        $('#tabMyApplication').submit();
+                    
+                    
+            
+            });
+        });
+
+    </script>
+
+    
+        
+        
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="actionsGroupItem_3758678008618904" class="nav--interaction__item js--actions-group-item applyButton" onclick="">
+
+
+<button class="nav--interaction__button js--btn-open-transcript protip sel_StudentApply" style="" type="button" tabindex="-1" data-pt-classes="tip--default" data-pt-title="" aria-describedby="tooltipContent84712">
+     APPLY 
+</button>
+
+
+</div>
+
+        
+        
+        
+    
+
+    
+
+
+
+    <script type="text/javascript">
+        function switchApplyShortlistButtonsVisibility(isPostingInUserBlacklist) {
+            if (!isPostingInUserBlacklist) {
+                $(".applyButton").removeClass("display--none");
+                $(".shortList").removeClass("display--none");
+            } else {
+                $(".applyButton").addClass("display--none");
+                $(".shortList").addClass("display--none");
+            }
+        }
+        function toggleBlacklistPosting(id, anchorClicked) {
+            var controllerPath = "/myAccount/co-op/postings.htm";
+
+            var request = {
+                action : '_-_-2ULmNwLG_arxXYGgtNY7noVUBRyhpZjb1e9Yb6wrMCizzorRSkHcqyuj1A2WporwbfpDmN3sljLvhlBW7Zd-uwZejdDM2B1_mngAWF6b49F2OxM22se8nt5VZC64u1OXRLYk3A7Gk5r32dtcjPZT42gPi1jzhEpYvngpPgTmd92dASkqh4nwIvMdP9dBp4gCoDuAd8orXiNA6eDKGHgX5xWhsCvPiUPSkCsHEU2vjHQkSA',
+                postingId: id,
+                initialSearchAction: '_-_-lEdXqGyRNQozNR4kMzk1svKoQ_NVU_mis8h3C2YBkM-5ZRFdzqnO2NdUbHZoqMy4yIJCTthJNvces86ubJ4KAy3Sv9S3wJzdGn9laQKmiXnkp_RtaJXtsGSlKoZybkCWbGPt7SxCZ5hnMNyoV3TuOg4EbBQL-caFjkGRi-i1QCCD44Umqg_aKv7W52hWmd7_CQ4BPvcMuMonA8HPNJotbvpx5JFI-hbgftkjSg',
+                rand : Math.floor(Math.random() * 100000)
+            };
+
+            $.post(controllerPath, request, function(data, status, xhr) {
+                if (orbisAppSr.checkAjaxResponse(xhr)) {
+                    switchApplyShortlistButtonsVisibility(data.added);
+                    if(data.added)
+                    {
+                        $(anchorClicked).find('button').text("Include in search results");
+                        orbisAppSr.showNotification("Job added to the not interested list.", "success");
+                    }
+                    else if (data.deleted)
+                    {
+                        $(anchorClicked).find('button').text("Not Interested");
+                        orbisAppSr.showNotification("Job removed from the not interested list.", "success");
+                    }
+                    else
+                    {
+                        orbisAppSr.showNotification("Job cannot be added to the not interested list. Reason: You have an application for this job.", "error");
+                    }
+                }
+            }, "json");
+        }
+    </script>
+    
+        
+        
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="actionsGroupItem_3503604672964916" class="nav--interaction__item js--actions-group-item shortList" onclick="orbisAppSr.buildForm({'postingId':'203132','searchType':'','accessToPostings':'infoForPostings','initialSearchAction':'_-_-lEdXqGyRNQozNR4kMzk1svKoQ_NVU_mis8h3C2YBkM-5ZRFdzqnO2NdUbHZoqMy4yIJCTthJNvces86ubJ4KAy3Sv9S3wJzdGn9laQKmiXnkp_RtaJXtsGSlKoZybkCWbGPt7SxCZ5hnMNyoV3TuOg4EbBQL-caFjkGRi-i1QCCD44Umqg_aKv7W52hWmd7_CQ4BPvcMuMonA8HPNJotbvpx5JFI-hbgftkjSg','singleJobMode':'true','action':'_-_-RLJFsNGZ-mVr8_bZv1Eh2YLnuiNeTPkYfwXhKkDH99SjgtabIxLMtn6NPVzbBjB2cBa-P2_RsLftkYNThSps2KBhCUAvNSXa3HJuEwwADC_aPk-p8mkNOXR84T-WtRhsLddKDl5Miz6WPThaAo51fBFbkx_0-xnmbaRDqz6MMLw53KuMMgg6SIjCEO5_f_YBRqQU-LHm2J0TmR1RPwxlN5cZGUzXo6QPrSeSMVFaH688Nw','rand':'7275347715473262'}, '', '', '').submit();">
+
+
+<button class="nav--interaction__button js--btn-open-transcript protip" style="" type="button" tabindex="-1" data-pt-classes="tip--default" data-pt-title="" aria-describedby="tooltipContent2339">
+    
+                
+                    
+                        Unshortlist
+                        
+                        
+                    
+                    
+                
+            
+</button>
+
+
+</div>
+
+        
+    
+
+    
+    <script>
+        switchApplyShortlistButtonsVisibility(false);
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="actionsGroupItem_4003796394042829" class="nav--interaction__item js--actions-group-item " onclick="orbisAppSr.buildForm({'postingId':'203132','action':'_-_-0Vl5m-E0S11iiV_xuMj2V0g87RIziAhCGGGTdeXxnpZIW1TK88__xTqkRnatkEjIjxbWDoGb9pHyjELVVMiIAwJE3quJqrq5z5WterT6U0b-J81p9Wl0b8J0cuVwhrzSpnb8wEf6zDaLHjQ9uqUGwEB_MJoNJqtx7fYitHaLyCdOowea3j2a5D7FRKNVr95rq7-JEcmrYYgizMx2t6KUxvPIwRBPQYK_Y3xJHvdSnb_UGuM','rand':'49871259742246987'}, '', '', '').submit();">
+
+
+<button class="nav--interaction__button js--btn-open-transcript protip" style="" type="button" tabindex="-1" data-pt-classes="tip--default" data-pt-title="" aria-describedby="tooltipContent36522">
+    
+    Print
+
+</button>
+
+
+</div>
+
+
+
+
+</div>
+</nav>
+
+
+
+
+</div>
+
+
+
+
+
+<div class="orbisTabContainer">
+<div class="tabbable">
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="orbisModuleTabs">
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+$(document).ready( function() {
+    orbisApp.startTabLogic("np_postingHeader_user_nav_tabs1");
+});
+</script>
+
+<div class="row-fluid">
+<div class="span12">
+    <ul class="nav nav-tabs" id="np_postingHeader_user_nav_tabs1" role="tablist">
+        <li class="active" id="activeTab16880" aria-selected="true" role="tab"><a href="javascript:void(0)" onclick="$('#navToNPForm').submit();">Posting Detail </a></li>
+    <li class="dropdown" style="display: none;" tabindex="-1" aria-selected="false" role="tab"><a class="dropdown-toggle sel_threedots_test" data-toggle="dropdown" href="#">...</a><ul class="dropdown-menu"></ul><span class="instruction hidden">(Press enter to load)</span></li></ul>
+</div>
+</div>
+
+<form enctype="multipart/form-data" id="navToNPForm" action="/myAccount/co-op/postings.htm" method="post">
+<input type="hidden" name="action" value="_-_-qENk0OhLhHfchgQ_Yiw_a8r1CAG4zl5VplSPaNBlv_Mje5e6NMdlmM93tDcI5R4wkf9LDC7kagkJI4N7kMB_27nkUbKo91cCuW4vHAIPTf6WjEDc4dpfUsSBV70WiidFQYVfxzO4LhD_eVxpdsFN91KNvw3V2jjaDB8nSbFTm9FTKPNno2BlW07ijvLD132719j8W78RBFahk_z2kBPyAQMYPb94KmKJDZ0"> 
+<input type="hidden" name="postingId" value="203132">
+<input type="hidden" name="accessToPostings" value="infoForPostings">
+<input type="hidden" name="searchType" value="">
+<input type="hidden" name="npfGroup" value="">
+</form>
+
+
+            </div>
+            <div class="tab-content" role="tabpanel" aria-labelledby="activeTab16880">
+                <ul class="nav nav-pills">
+                    <li class="active"><a href="javascript:void(0);" onclick="orbisAppSr.buildForm({'action':'_-_-DN7FCqGGL8jA192onV3zm9t68ap5WYYEc66flID0yOHA5mTN4uuh3YsPPoM5dsvK0-NOZw42vdwf-plGEQF-TzbAhzlbgRGBuvApBtF9kxeLmdjPDnus4zOm2lpo_34TbkCOOPSNRA9xK6c599X_WB4pbeJLfXdmIwKWlCO81ONk41D3YEsA3WY7iW1i10exmKhSS0X9REAXNy_c8BipZSJZZherad5Tdf8','postingId':'203132','accessToPostings':'infoForPostings','npfGroup':'','initialSearchAction':'_-_-lEdXqGyRNQozNR4kMzk1svKoQ_NVU_mis8h3C2YBkM-5ZRFdzqnO2NdUbHZoqMy4yIJCTthJNvces86ubJ4KAy3Sv9S3wJzdGn9laQKmiXnkp_RtaJXtsGSlKoZybkCWbGPt7SxCZ5hnMNyoV3TuOg4EbBQL-caFjkGRi-i1QCCD44Umqg_aKv7W52hWmd7_CQ4BPvcMuMonA8HPNJotbvpx5JFI-hbgftkjSg','searchType':''}, '/myAccount/co-op/postings.htm', '').submit();">Overview</a></li>
+                    
+                        <li class=""><a href="javascript:void(0);" onclick="orbisAppSr.buildForm({'action':'_-_-125KYpYJCbwbCholn1A56uWMnqiTNSc5IHT4-E48yWWWsxRM_hhJ-SHwJA678rNv9pr0JXGbVk0iIX3_QsxNho3yeZ-xqIjMHjugEc2X6UZeBlkEW-ZFFG0m74bZZh39f_JewapsOllKJjlbSl0MrnXC-hfmiw09eeAXKTrKG0A_ZEXu8fFz1cNa9TGTYc5aDGgk18sLAqCEoaU0tNBGAJca4EpxGPrCITU2m64','postingId':'203132','accessToPostings':'infoForPostings','npfGroup':'','initialSearchAction':'_-_-lEdXqGyRNQozNR4kMzk1svKoQ_NVU_mis8h3C2YBkM-5ZRFdzqnO2NdUbHZoqMy4yIJCTthJNvces86ubJ4KAy3Sv9S3wJzdGn9laQKmiXnkp_RtaJXtsGSlKoZybkCWbGPt7SxCZ5hnMNyoV3TuOg4EbBQL-caFjkGRi-i1QCCD44Umqg_aKv7W52hWmd7_CQ4BPvcMuMonA8HPNJotbvpx5JFI-hbgftkjSg','searchType':''}, '/myAccount/co-op/postings.htm', '').submit();">Map</a></li>
+                    
+                    
+                        
+                                                    
+                    
+                    
+                    
+                    
+                    
+                    
+                </ul>
+                <hr>
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+loadSkillMatchCounts();
+});
+
+function loadSkillMatchCounts()
+{
+var request = {
+        action: '_-_-ZUxlqaSuAwtUiOqQ_bm1nk0xCR2vkkSJpz81T2AH2LRzMMkBgQOswYCB38Z9aszjuNkFqU_dJaaOub1n8tKe1WTGqSYMqbIIkdRWNrNO9uFFmssfruPs_Xw5HQg8uGdIiGgCii5YgR-NbHJ_crldP0d1jGT-TMmX3g5fNEFDiALBaHiTNl4QoSgOhEuCTzYl597nIrvtTkxuiph6puHQYJTPUkKl7fUq4yrY7JxQbuvj3iaO',
+        postingId  : 203132
+};
+$("#skillMatchCountsPlaceholder").load("/myAccount/co-op/postings.htm", request, function(data, status, xhr){
+});
+}
+
+</script>
+
+<div class="row-fluid">
+<div class="span8">
+
+<!-- Language change controls for bilingual postings -->
+
+<!-- End Language change controls for bilingual postings -->
+
+
+
+
+
+    
+
+<div id="postingDiv" style="display: ">
+    
+
+    
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong>Organization</strong>
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered">
+                    <tbody>
+                        
+                        
+                            <tr>
+                                <td style="width: 25%;"><strong>Organization Name</strong>
+                                </td>
+                                <td width="75%">
+                                    
+                                        BDO Canada LLP
+                                    
+                                    
+                                    
+                                    
+                                </td>
+                            </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-default">
+<div class="panel-heading">
+<strong>JOB POSTING INFORMATION</strong>
+</div>
+<div class="panel-body">
+<table class="table table-bordered">
+    <tbody>
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+                
+<tr>
+ <td style="width: 25%;">
+    
+    
+        <strong>
+            
+                
+                
+                    Co-op Work Term:
+                
+            
+        </strong>
+    
+</td>
+<td width="75%">
+
+    
+    
+        2025 - Fall
+    
+    
+    
+    
+    
+    
+
+    
+</td>
+</tr>
+
+            
+        
+            
+                
+<tr>
+ <td style="width: 25%;">
+    
+    
+        <strong>
+            
+                
+                
+                    Co-op Origin:
+                
+            
+        </strong>
+    
+</td>
+<td width="75%">
+
+    
+    
+    
+    
+    
+    
+    
+
+    
+        
+        
+        
+        
+        
+            
+
+
+
+
+<span class="np-view-question--17">
+
+
+Primary Round (Rank/Match)
+
+</span>
+        
+        
+        
+        
+        
+        
+        
+
+    
+</td>
+</tr>
+
+            
+        
+            
+                
+<tr>
+ <td style="width: 25%;">
+    
+    
+        <strong>
+            
+                
+                
+                    Co-op Work Term Commitment:
+                
+            
+        </strong>
+    
+</td>
+<td width="75%">
+
+    
+    
+    
+    
+    
+    
+    
+
+    
+        
+        
+        
+        
+        
+            
+
+
+
+
+<span class="np-view-question--18">
+
+
+1
+
+</span>
+        
+        
+        
+        
+        
+        
+        
+
+    
+</td>
+</tr>
+
+            
+        
+            
+                
+<tr>
+ <td style="width: 25%;">
+    
+    
+        <strong>
+            
+                
+                
+                    Co-op Work Term Duration:
+                
+            
+        </strong>
+    
+</td>
+<td width="75%">
+
+    
+    
+    
+    
+    
+    
+    
+
+    
+        
+        
+        
+        
+        
+            
+
+
+
+
+<span class="np-view-question--19">
+
+
+    
+    
+    
+        4 months
+    
+
+
+
+</span>
+        
+        
+        
+        
+        
+        
+        
+
+    
+</td>
+</tr>
+
+            
+        
+            
+                
+<tr>
+ <td style="width: 25%;">
+    
+    
+        <strong>
+            
+                
+                
+                    Job Title:
+                
+            
+        </strong>
+    
+</td>
+<td width="75%">
+
+    
+    
+    
+    
+    
+    
+    
+
+    
+        
+            
+
+
+
+
+<span class="np-view-question--20">
+
+
+Co-op or Intern, M&amp;A and Capital Markets (JR2506)
+
+</span>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+    
+</td>
+</tr>
+
+            
+        
+            
+                
+<tr>
+ <td style="width: 25%;">
+    
+    
+        <strong>
+            
+                
+                
+                    Job Location:
+                
+            
+        </strong>
+    
+</td>
+<td width="75%">
+
+    
+    
+    
+    
+    
+    
+    
+
+    
+        
+            
+
+
+
+
+<span class="np-view-question--21">
+
+
+Toronto
+
+</span>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+    
+</td>
+</tr>
+
+            
+        
+            
+                
+<tr>
+ <td style="width: 25%;">
+    
+    
+        <strong>
+            
+                
+                
+                    Number of Positions:
+                
+            
+        </strong>
+    
+</td>
+<td width="75%">
+
+    
+    
+    
+    
+    
+    
+    
+
+    
+        
+        
+        
+        
+        
+            
+
+
+
+
+<span class="np-view-question--22">
+
+
+    
+    
+    
+        1
+    
+
+
+
+</span>
+        
+        
+        
+        
+        
+        
+        
+
+    
+</td>
+</tr>
+
+            
+        
+            
+                
+            
+        
+            
+        
+            
+                
+<tr>
+ <td style="width: 25%;">
+    
+    
+        <strong>
+            
+                
+                
+                    Job Description:
+                
+            
+        </strong>
+    
+</td>
+<td width="75%">
+
+    
+    
+    
+    
+    
+    
+    
+
+    
+        
+            
+
+
+
+
+<span class="np-view-question--25">
+
+
+<div><div><p><span style="background-color:transparent;"><span>Our Toronto office is looking for a <strong>Co-op Student or Intern</strong> to join the Mergers &amp; Acquisitions (M&amp;A) and Capital Markets team from September to December 2025 and own the following responsibilities:</span></span></p></div><div><ul><li><span style="background-color:transparent;"><span>Prepare pitch-books and presentation documents in connection with business development initiatives</span></span></li><li><span style="background-color:transparent;"><span>Perform market, industry and company research supporting live engagements</span></span></li><li><span style="background-color:transparent;"><span>Prepare lists of potential buyers and acquisition targets</span></span></li><li><span style="background-color:transparent;"><span>Assist with drafting of marketing documentation (i.e. Confidential Information Memorandums)</span></span></li><li><span style="background-color:transparent;"><span>Assist with various financial analysis as required including financial modelling and comparable company analyses; and</span></span></li><li><span style="background-color:transparent;"><span>Participate in due diligence processes.</span></span></li></ul></div></div><div><p> </p><div><p><span style="background-color:transparent;"><span>How do we define success for your role?</span></span></p></div><div><ul><li><span style="background-color:transparent;"><span>You demonstrate BDO's core values through all aspects of your work: Integrity, Respect &amp; Collaboration</span></span></li><li><span style="background-color:transparent;"><span>You understand your clients' industry, challenges, and opportunities; clients describe you as positive, professional, and delivering high quality work</span></span></li><li><span style="background-color:transparent;"><span>You identify, recommend, and are focused on effective service delivery to your clients</span></span></li><li><span style="background-color:transparent;"><span>You share in an inclusive &amp; engaging work environment that develops, retains &amp; attracts talent</span></span></li><li><span style="background-color:transparent;"><span>You actively participate in the adoption of digital tools and strategies to drive an innovative workplace</span></span></li><li><span style="background-color:transparent;"><span>You grow your expertise through learning &amp; professional development.</span></span></li></ul><p> </p></div></div><div><div><p> </p></div></div>
+
+</span>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+    
+</td>
+</tr>
+
+            
+        
+            
+                
+<tr>
+ <td style="width: 25%;">
+    
+    
+        <strong>
+            
+                
+                
+                    Job Requirements:
+                
+            
+        </strong>
+    
+</td>
+<td width="75%">
+
+    
+    
+    
+    
+    
+    
+    
+
+    
+        
+            
+
+
+
+
+<span class="np-view-question--26">
+
+
+<div><p><span style="background-color:transparent;"><span><strong>Your experience and education</strong></span></span></p></div><div><ul><li><span style="background-color:transparent;"><span>You are enrolled in a post-secondary business program with an emphasis in accounting or finance</span></span></li><li><span style="background-color:transparent;"><span>You have a strong interest in Mergers and Acquisitions</span></span></li><li><span style="background-color:transparent;"><span>You have excellent attention to detail and ability to perform analytical work accurately, often under time pressure</span></span></li><li><span style="background-color:transparent;"><span>You have developed communication skills and a strong ability to collaborate with team members</span></span></li><li><span style="background-color:transparent;"><span>You have a strong aptitude for Microsoft Excel</span></span></li><li><span style="background-color:transparent;"><span>You have the ability to prioritize competing priorities with varying deadlines</span></span></li><li><span style="background-color:transparent;"><span>You have strong analytical and problem-solving skills in a fast-paced deals environment.</span></span></li></ul></div>
+
+</span>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+    
+</td>
+</tr>
+
+            
+        
+            
+                
+<tr>
+ <td style="width: 25%;">
+    
+    
+        <strong>
+            
+                
+                
+                    Targeted Co-op Programs:
+                
+            
+        </strong>
+    
+</td>
+<td width="75%">
+
+    
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="clustersProgramsDiv">
+
+
+
+<button type="button" class="btn btn-default" onclick="$('.targetedPrograms').toggle();">View Targeted Programs</button>
+<div class="targetedPrograms" style="display: none;">
+    
+        Business Co-op - Sequence One
+        <br>
+    
+        Business Co-op - Sequence Two
+        <br>
+    
+        Double Degree BBA / Computing Co-op
+        <br>
+    
+        Double Degree BBA / Math Co-op
+        <br>
+    
+        Double Degree BBA/Computing (Wat) Co-op
+        <br>
+    
+        Double Degree BBA/Financial Math Co-op
+        <br>
+    
+        Economics Co-op
+        <br>
+    
+        Master of Finance Co-op
+        <br>
+    
+</div>
+
+</div>
+    
+    
+    
+    
+    
+    
+    
+
+    
+</td>
+</tr>
+
+            
+        
+            
+                
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+
+
+        
+    </tbody>
+</table>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-default">
+<div class="panel-heading">
+<strong>APPLICATION INFORMATION</strong>
+</div>
+<div class="panel-body">
+<table class="table table-bordered">
+    <tbody>
+        <tr>
+            <td>
+                <strong>Application Deadline:</strong>
+            </td>
+            <td id="npPostingApplicationInfoDeadlineDate">
+                    May
+              11, 2025
+              11:59 PM</td>
+        </tr>
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+                
+<tr>
+ <td style="width: 25%;">
+    
+    
+        <strong>
+            
+                
+                
+                    Application Documents Required:
+                
+            
+        </strong>
+    
+</td>
+<td width="75%">
+
+    
+    
+    
+    
+    
+    
+        <span class="np-view-question--29 np-posting-documents-required">Cover Letter,Resumé,Transcript</span>
+    
+    
+
+    
+</td>
+</tr>
+
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+<tr>
+ <td style="width: 25%;">
+    
+    
+        <strong>
+            
+                
+                
+                    Additional Application Information:
+                
+            
+        </strong>
+    
+</td>
+<td width="75%">
+
+    
+    
+    
+    
+    
+    
+    
+
+    
+        
+            
+
+
+
+
+<span class="np-view-question--33">
+
+
+<p><span style="background-color:rgb(255,255,0);"><strong>Students must apply on Navigator AND the following link: </strong></span><a href="https://bdo.wd3.myworkdayjobs.com/BDO/job/Toronto---Bay-St/Co-op-or-Intern--M-A-and-Capital-Markets---September-2025_JR2506" target="_blank"><span style="background-color:rgb(255,255,0);"><strong>https://bdo.wd3.myworkdayjobs.com/BDO/job/Toronto---Bay-St/Co-op-or-Intern--M-A-and-Capital-Markets---September-2025_JR2506</strong></span></a></p>
+
+</span>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+    
+</td>
+</tr>
+
+            
+        
+            
+        
+            
+                
+            
+        
+            
+        
+            
+        
+        
+            <tr>
+                <td>
+                    <strong>Application Method:</strong>
+                </td>
+                <td>
+                    
+                        
+                    Have applicants apply through Navigator
+                
+                        
+                    
+                </td>
+            </tr>
+            
+        
+    </tbody>
+</table>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-default">
+<div class="panel-heading">
+<strong>ORGANIZATION INFORMATION FOR JOB POSTING</strong>
+</div>
+<div class="panel-body">
+<table class="table table-bordered">
+    <tbody>
+        
+            
+                
+<tr>
+ <td style="width: 25%;">
+    
+    
+        <strong>
+            
+                
+                
+                    Organization:
+                
+            
+        </strong>
+    
+</td>
+<td width="75%">
+
+    
+    
+    
+    
+        BDO Canada LLP
+    
+    
+    
+    
+
+    
+</td>
+</tr>
+
+            
+        
+            
+        
+            
+                
+<tr>
+ <td style="width: 25%;">
+    
+    
+        <strong>
+            
+                
+                
+                    Salutation:
+                
+            
+        </strong>
+    
+</td>
+<td width="75%">
+
+    
+    
+    
+    
+    
+    
+    
+
+    
+        
+        
+        
+        
+        
+            
+
+
+
+
+<span class="np-view-question--3">
+
+
+Ms.
+
+</span>
+        
+        
+        
+        
+        
+        
+        
+
+    
+</td>
+</tr>
+
+            
+        
+            
+                
+<tr>
+ <td style="width: 25%;">
+    
+    
+        <strong>
+            
+                
+                
+                    Job Contact First Name:
+                
+            
+        </strong>
+    
+</td>
+<td width="75%">
+
+    
+    
+    
+    
+    
+    
+    
+
+    
+        
+            
+
+
+
+
+<span class="np-view-question--4">
+
+
+Janeva
+
+</span>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+    
+</td>
+</tr>
+
+            
+        
+            
+                
+<tr>
+ <td style="width: 25%;">
+    
+    
+        <strong>
+            
+                
+                
+                    Job Contact Last Name:
+                
+            
+        </strong>
+    
+</td>
+<td width="75%">
+
+    
+    
+    
+    
+    
+    
+    
+
+    
+        
+            
+
+
+
+
+<span class="np-view-question--5">
+
+
+Ferras
+
+</span>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+    
+</td>
+</tr>
+
+            
+        
+            
+                
+<tr>
+ <td style="width: 25%;">
+    
+    
+        <strong>
+            
+                
+                
+                    Contact Title:
+                
+            
+        </strong>
+    
+</td>
+<td width="75%">
+
+    
+    
+    
+    
+    
+    
+    
+
+    
+        
+            
+
+
+
+
+<span class="np-view-question--6">
+
+
+Specialist, Campus Recruitment
+
+</span>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+    
+</td>
+</tr>
+
+            
+        
+            
+        
+            
+        
+            
+                
+<tr>
+ <td style="width: 25%;">
+    
+    
+        <strong>
+            
+                
+                
+                    Website:
+                
+            
+        </strong>
+    
+</td>
+<td width="75%">
+
+    
+    
+    
+    
+    
+        
+            
+            
+                <a href="http://www.bdo.ca" class="np-view-question--9" target="_blank">www.bdo.ca</a>
+            
+        
+    
+    
+    
+
+    
+</td>
+</tr>
+
+            
+        
+            
+                
+<tr>
+ <td style="width: 25%;">
+    
+    
+        <strong>
+            
+                
+                
+                    Address Line One:
+                
+            
+        </strong>
+    
+</td>
+<td width="75%">
+
+    
+    
+    
+    
+    
+    
+    
+
+    
+        
+            
+
+
+
+
+<span class="np-view-question--10">
+
+
+222 Bay Street, Suite 2200
+
+</span>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+    
+</td>
+</tr>
+
+            
+        
+            
+                
+            
+        
+            
+                
+<tr>
+ <td style="width: 25%;">
+    
+    
+        <strong>
+            
+                
+                
+                    City:
+                
+            
+        </strong>
+    
+</td>
+<td width="75%">
+
+    
+    
+    
+    
+    
+    
+    
+
+    
+        
+            
+
+
+
+
+<span class="np-view-question--12">
+
+
+Toronto
+
+</span>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+    
+</td>
+</tr>
+
+            
+        
+            
+                
+<tr>
+ <td style="width: 25%;">
+    
+    
+        <strong>
+            
+                
+                
+                    Province / State:
+                
+            
+        </strong>
+    
+</td>
+<td width="75%">
+
+    
+    
+    
+    
+    
+    
+    
+
+    
+        
+        
+        
+        
+        
+            
+
+
+
+
+<span class="np-view-question--13">
+
+
+Ontario
+
+</span>
+        
+        
+        
+        
+        
+        
+        
+
+    
+</td>
+</tr>
+
+            
+        
+            
+                
+<tr>
+ <td style="width: 25%;">
+    
+    
+        <strong>
+            
+                
+                
+                    Postal Code / Zip Code:
+                
+            
+        </strong>
+    
+</td>
+<td width="75%">
+
+    
+    
+    
+    
+    
+    
+    
+
+    
+        
+            
+
+
+
+
+<span class="np-view-question--14">
+
+
+M5K 1H6
+
+</span>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+    
+</td>
+</tr>
+
+            
+        
+            
+                
+<tr>
+ <td style="width: 25%;">
+    
+    
+        <strong>
+            
+                
+                
+                    Country:
+                
+            
+        </strong>
+    
+</td>
+<td width="75%">
+
+    
+    
+    
+    
+    
+    
+    
+
+    
+        
+        
+        
+        
+        
+            
+
+
+
+
+<span class="np-view-question--15">
+
+
+Canada
+
+</span>
+        
+        
+        
+        
+        
+        
+        
+
+    
+</td>
+</tr>
+
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </tbody>
+</table>
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+<div class="panel panel-default">
+<div class="panel-heading">
+<strong> Additional Information</strong>
+</div>
+<div class="panel-body">
+<table class="table table-bordered">
+    <tbody>
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+                
+            
+        
+    </tbody>
+</table>
+</div>
+</div>
+
+
+
+
+</div>
+</div>
+<div class="span4">
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var params = {assign : []};
+var controllerPath = "/myAccount/co-op/postings.htm";
+
+$(document).ready(function() {
+getAnticipatedCompetencies();
+});
+
+function getAnticipatedCompetencies()
+{
+var additionalParams = {postingId : 203132, isStudent: true};
+params = $.extend(params, {
+    action : '_-_-zxxq802i-wvon6W_4WxjeKPSC_KJLC2o5dwm4Sy_9ksiAF_ihO54tTzlHqicPven44_tFFvPsZP_x1cRulRoh-mwXyPjvgfwNFeHTR7ch5oqkcEErwuKBmsZ1r4OGQcYBI9b90zVqjZNu2dT3erpncWALPDZEPHoxwSs3qVuL7wfKrwbBL28_way1l-alYY1WzMC_2_bTjbRBwEZK4dSMNbUhhbduCBIpg-xAE-ryPLVcQwVB8ET6EWJ9O_Fw600kEZg41Q',
+
+});
+Object.keys(additionalParams).forEach(key => {
+    params[key] = additionalParams[key]
+});
+
+$.ajax({
+    url: controllerPath,
+    dataType: "json",
+    type: 'POST',
+    data: params,
+    success: function (data) {
+        fillCompetencies(data);
+        $('.icon-info-sign').tooltip();
+    }
+});
+}
+
+function fillCompetencies(data) {
+var isL1 = true;
+var list = $("#competenciesList");
+var modalLink = $("#availableCompetenciesModalLink");
+
+if (data.length == 0)
+{
+    $("#availableCompetencies").css("display", "none");
+}
+else if (data.length <= 10)
+{
+    $("#availableCompetencies").css("display", "");
+    list = generateList(data, data.length, list, isL1)
+    modalLink.hide();
+}
+else
+{
+    $("#availableCompetencies").css("display", "");
+    list = generateList(data, 10, list, isL1)
+    var pls = data.length - 10;
+    var oldValue = modalLink.text();
+    modalLink.text(oldValue.replace("{0}",pls));
+    var modalList = $("#availableCompetenciesModal");
+    generateList(data, data.length, modalList, isL1)
+}
+return list;
+}
+
+function generateList(data, dataCount, element, isL1) {
+for (var i = 0; i < dataCount; i++) {
+    var competency = data[i];
+    var item = document.createElement('li');
+    if(isL1){
+        item.append(document.createTextNode(competency.l1CompetencyName));
+        if(competency.inheritedTag){
+            var icon  = createIcon(competency.l1TagName);
+            item.append(icon);
+        }
+
+    }else {
+        item.append(document.createTextNode(competency.l2CompetencyName));
+        if(competency.inheritedTag){
+            var icon  = createIcon(competency.l2TagName);
+            item.append(icon);
+        }
+    }
+    element.append(item);
+}
+return element;
+}
+
+function createIcon(tagName) {
+var icon = document.createElement('i');
+var dataTitle = 'To achieve this competency, students will need to have the following academic tag: {0}';
+dataTitle = dataTitle.replace('{0}',tagName);
+icon.setAttribute('class','icon-info-sign icon-large');
+icon.setAttribute('data-title', dataTitle);
+return icon;
+}
+
+</script>
+
+
+
+<div>
+<div id="availableCompetencies" class="panel panel-default" style="display:none;">
+    <div class="panel-heading">
+        <strong>Anticipated Competencies</strong>
+    </div>
+    <div class="panel-body">
+        <div><ul id="competenciesList"></ul></div>
+        <div>
+            
+            <a href="#ipModal1575428377" id="availableCompetenciesModalLink" data-toggle="modal">
+                +{0} more
+            </a>
+            <div id="ipModal1575428377" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="ipModal1575428377Label" aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 id="ipModal1575428377Label">
+                        Anticipated Competencies
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <ul id="availableCompetenciesModal"></ul>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-default">
+<div class="panel-heading">
+<strong><strong>TAGS</strong></strong>
+</div>
+<div class="panel-body">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <span class="label label-inverse">
+        Deadline in 3 day(s)
+
+    </span>
+
+
+
+
+
+<span class="label label-info">
+    Shortlisted
+    
+</span>
+
+
+
+<span class="label">
+Viewed
+</span>
+
+
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+function renderServiceTeamMembers203132()
+{
+var request = {};
+request.action = '_-_-10xJihHIi-QO7dRDQG_6xk1WQ6unYTMd8cORxJQNhVniJtMdXEh82rsqC5TLCE_I8w8FQTyCGtu_eFEiao4_yU344Hftr7y12sKRz5fEo3uZxdUsoej_8IlF4qOcaKrHVm1DNYwwH5VLQcjRLPU4TcRpKPuSIDvGCN1XRo84tKXmtfbrQ8_U4X5rjq0ybrBpLkYclgovoPsHrQ1cjTJvgI-hO2QHye5utM6ihfRslg1e-d4XWoE1RLPVyX0';
+request.entityName = 'postingId';
+request.entityId = '203132';
+request.entityType = 'JOBPOSTING';
+request.postingId = '203132';
+request.nPostingPath = '/myAccount/co-op/postings',
+request.rand = Math.floor(Math.random() * 100000);
+
+
+
+$.ajax({
+    type : "POST",
+    url	: "/myAccount/co-op/postings.htm",
+    data : request,
+    async : true,
+    dataType : "html",
+    success : function(data, textStatus, xhr)
+    {
+        if (orbisApp.checkAjaxResponse(xhr)) {
+            $('.serviceTeamMembersContainer203132').html(data);
+        } else {
+            orbisApp.alertDialog("server communication error: " + textStatus);
+        }
+    }
+});
+}
+
+
+
+
+
+$(document).ready(function(){
+renderServiceTeamMembers203132();
+
+
+});
+</script>
+
+<div class="serviceTeamMembersContainer203132">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-default">
+<div class="panel-heading">
+<strong><i class="icon-group icon-2x"></i> SERVICE TEAM </strong>
+
+</div>
+<div class="panel-body">
+
+    <table class="table table-striped table-bordered table-condensed">
+        <tbody>
+            
+                <tr>
+                    <td width="30%">Co-op Consultant
+                        
+                    </td>
+                    <td style="width: 60%;">Carissa MacKendrick
+                        
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td width="30%">Career Centre
+                        
+                    </td>
+                    <td style="width: 60%;">Jan Basso
+                        
+                        
+                        
+                    </td>
+                </tr>
+            
+        </tbody>
+    </table>
+
+
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var params = {assign : []};
+var controllerPath = "/myAccount/co-op/postings.htm";
+
+$(document).ready(function() {
+
+    $(".removeTag").click(removeTag);
+
+
+
+
+
+
+});
+
+function loadAutocomplete()
+{
+params = $.extend(params, {
+    action : '_-_-VIvrzmVzcgEMDZifFucZ_S7gwzwzgEO7FtcL_vSWnHTxxnOS6-S-azk0UUa1qpZLsAwGH44tFW1V-RnIU3pa91dASAttBeXBywhQsxQmuyDuwl8-yfUTuUit7kwrUPKik6sZy-xip5HRPTO3BU95aWr3ldd0UP0o5f5E9Teprl74HZvqmOt2zfiZS50pDkszSIQyf3QZU1wBbQvoBBF-Eb3b8eZKz7m0TYoEJ8NtXFIaz4s',
+    additionalParams : '{postingId : 203132}',
+    r : Math.random() * 10000
+});
+
+$("#tagsLookup").autocomplete({
+    source : controllerPath + '?' + $.param(params),
+    minLength : 3,
+    select : function(event, ui) {
+        params.action = '_-_-RhUpEmNIlldDXXk1dcvZNMR7kuVAl4ZpJEzDApu_1QpLAiw5IIvo4b4Zc10r3O5b70VQI8wq9b6XP_1IfNII8NmueCC4KehOGz-MTbpCDtBGsA7zmsMuylWxIZCgjGbYYMl2wJy-klQGlkaH4QS-W6b2it-VhGnVHgQYUxQgjtpB0QrvT9lb0mxsGul4TrHqN39U68KwOlOsDnaLdjer6cT5fT-ff7r33A';
+        params.tag = ui.item.id;
+        params.key = ui.item.key;
+        $.ajax({
+            url : controllerPath,
+            dataType : "json",
+            type : 'POST',
+            data : params,
+            success : function(data) {
+                $("#tagsLookup").trigger("tagAssigned");
+            }
+        });
+    },
+    close : function(event, ui) {
+        $("#tagsLookup").val("");
+    }
+});
+}
+
+function removeTag() {
+var $this = $(this);
+var $removeMe = $this.closest("div");
+var request = {
+    action : '_-_-LAcDNgrQOTyRUTNEk34gKBhEajraJCb18gsNcR_56KurpPPa_I4t0907ycgdnrbyc44-eTqJFwik1_zBJL_6ztI9ydRXbcxuQJbxHHhJbrpf-7Gy6LsQI7iwhW5jAohJ3PUjTvC_v9T-cuHBLs7gZ_2tT9rKneztQYOMMvv9rx4FL22Fb6EUi-CYDuQqqX5GgfE88nU_4_-dtTLWuFPz5bmiFVwuK2KIcQ',
+    rand : Math.floor(Math.random() * 100000),
+    additionalParams : '{postingId : 203132}',
+    key : $this.data('key'),
+    tag : $this.data('tag')
+};
+
+
+
+// AJAX CALL HERE!
+$.post("/myAccount/co-op/postings.htm", request, function(data, status, xhr) {
+    if (orbisApp.checkAjaxResponse(xhr)) {
+        $removeMe.addClass("removeItem").delay(250).queue(function() {
+            $(this).remove().clearQueue();
+        });
+        
+        if($this.closest("div").siblings('div').length ==0) {
+            $this.closest('.row-fluid').remove();
+        }
+        
+        $('input[name='+$this.data('key')+'_tags][value='+$this.data('tag')+']').attr('checked', false);
+    }
+}, "json");
+}
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+<div id="tagCloud777067225">
+
+
+    <div id="tagCloudPanel71612369" class="panel panel-default tagCloud" style="display:none">
+        <div class="panel-heading tagCloudPanelHeading">
+            <strong><i class="icon-cloud icon-2x"></i>  Tag Cloud</strong>
+        </div>
+        <div class="panel-body">
+            
+            
+            
+            
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="tagGroup" id="tagGroup_academicCloud" style="margin-bottom: 15px; display: none;">
+
+    <strong>Academic Tags</strong>
+    
+    <hr>
+
+
+
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+if(!orbisApp.orbisAjax)
+{
+orbisApp.orbisAjax = new Object();
+}
+
+orbisApp.orbisAjax["tagCloud502589801"] = {
+load : function(){
+    var request = {
+        action : '_-_-dr_tgzusVZtr6pju0l6ssOvdXTJOUvyFDs0ZEcMOb5_4tY1-I387Sqq_ym5N5E86ddXx9wYK-520PJlXhvFQoUGcAuxRUpbzjmCa4Ug49nvD5qwKJ_3J43B13UgQhqXBnrCzcUcb-ypfHwJEQaOqxD1kKIMY5-hJe9OkCX266WONYQwX47bsszlgiXZEmGY-_RYrtFy7vQTq3pGdZ-X63lniNqY4tpCWCDaTnNzTFvs',
+        rand : Math.floor(Math.random() * 100000)
+    };
+
+    
+        $.extend(request, $.extend({postingId : 203132}, {tagCloudPanelId: 'tagCloudPanel71612369', cloudKey : 'academicCloud', unassignableFromLookup : ''}));
+    
+    
+    $("div#tagCloud502589801").load("", request, function(responseText, textStatus, xhr) {
+        if (orbisApp.checkAjaxResponse(xhr)) {
+            
+        }
+    });
+},
+manualLoad : function(){
+    $("div#tagCloud502589801").find(".manualLoad").remove();
+    $("div#tagCloud502589801").find(".ajaxLoader").removeClass("hide");
+    orbisApp.orbisAjax['tagCloud502589801'].load();
+},
+placeholder : $("div#tagCloud502589801")
+};
+</script>
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        orbisApp.orbisAjax["tagCloud502589801"].load();
+    });
+</script>
+
+
+
+<div id="tagCloud502589801" style="">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+    
+        params.assign.push('npatt');
+    
+    $("#tagsLookup").trigger("taKeyLoaded");
+});
+</script>
+
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#tagsLookup").on("tagAssigned", function(){
+        orbisApp.orbisAjax.tagCloud502589801.load();
+    });
+});
+</script>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="tagGroup" id="tagGroup_campusCloud" style="margin-bottom: 15px; display: none;">
+
+    <strong>Campus Tags</strong>
+    
+    <hr>
+
+
+
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+if(!orbisApp.orbisAjax)
+{
+orbisApp.orbisAjax = new Object();
+}
+
+orbisApp.orbisAjax["tagCloud1887934930"] = {
+load : function(){
+    var request = {
+        action : '_-_-uxj-maLj35CEAdqWuKORgrYS8HpdUkjej-WcHQ0ZMG1DznZIk0NDw6byiwO0XLouWmfsy_4QVqaYJRWr_ovQdv25nzqDodXOvZIH4IUwt1usYnP_njhXeJw-T-kmqoZX8TiHaBxSfENcI5EvJS2tPfaFOPXXDWE95xlOrxg70faW0eVFsrKD1SWq9R5D4W64EQ5jQ__oGO-sRy191gxVYGQDHHVKlof-17p9EvzhKD8',
+        rand : Math.floor(Math.random() * 100000)
+    };
+
+    
+        $.extend(request, $.extend({postingId : 203132}, {tagCloudPanelId: 'tagCloudPanel71612369', cloudKey : 'campusCloud', unassignableFromLookup : ''}));
+    
+    
+    $("div#tagCloud1887934930").load("", request, function(responseText, textStatus, xhr) {
+        if (orbisApp.checkAjaxResponse(xhr)) {
+            
+        }
+    });
+},
+manualLoad : function(){
+    $("div#tagCloud1887934930").find(".manualLoad").remove();
+    $("div#tagCloud1887934930").find(".ajaxLoader").removeClass("hide");
+    orbisApp.orbisAjax['tagCloud1887934930'].load();
+},
+placeholder : $("div#tagCloud1887934930")
+};
+</script>
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        orbisApp.orbisAjax["tagCloud1887934930"].load();
+    });
+</script>
+
+
+
+<div id="tagCloud1887934930" style="">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+    
+        params.assign.push('npztt');
+    
+    $("#tagsLookup").trigger("taKeyLoaded");
+});
+</script>
+
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#tagsLookup").on("tagAssigned", function(){
+        orbisApp.orbisAjax.tagCloud1887934930.load();
+    });
+});
+</script>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="tagGroup" id="tagGroup_complianceCloud" style="margin-bottom: 15px; display: none;">
+
+    <strong>Compliance Tags</strong>
+    
+    <hr>
+
+
+
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+if(!orbisApp.orbisAjax)
+{
+orbisApp.orbisAjax = new Object();
+}
+
+orbisApp.orbisAjax["tagCloud1057883703"] = {
+load : function(){
+    var request = {
+        action : '_-_-cLajfmEo0Qy05NU2lKFCUBpJHtAlMzukNAX4wfEEZ84ggkruwDFLj0DA151qBIZDt3CF8-0iVZotdE90vMutagnGcatA5wpzVWzSSRyCuWHYxm4QO93kKNrG04rLUCPlhgx5qDvsbyjo33IPNAvu2zP2Or_2d85kndJJRSoKmyLy3-YWHWO-IQrYl8WgA6QkGWULy8qE8tCDNq53vjEYu2y8mBxn5ia1ftAzv-N6n2A',
+        rand : Math.floor(Math.random() * 100000)
+    };
+
+    
+        $.extend(request, $.extend({postingId : 203132}, {tagCloudPanelId: 'tagCloudPanel71612369', cloudKey : 'complianceCloud', unassignableFromLookup : ''}));
+    
+    
+    $("div#tagCloud1057883703").load("", request, function(responseText, textStatus, xhr) {
+        if (orbisApp.checkAjaxResponse(xhr)) {
+            
+        }
+    });
+},
+manualLoad : function(){
+    $("div#tagCloud1057883703").find(".manualLoad").remove();
+    $("div#tagCloud1057883703").find(".ajaxLoader").removeClass("hide");
+    orbisApp.orbisAjax['tagCloud1057883703'].load();
+},
+placeholder : $("div#tagCloud1057883703")
+};
+</script>
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        orbisApp.orbisAjax["tagCloud1057883703"].load();
+    });
+</script>
+
+
+
+<div id="tagCloud1057883703" style="">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+    
+        params.assign.push('npctt');
+    
+    $("#tagsLookup").trigger("taKeyLoaded");
+});
+</script>
+
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#tagsLookup").on("tagAssigned", function(){
+        orbisApp.orbisAjax.tagCloud1057883703.load();
+    });
+});
+</script>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="tagGroup" id="tagGroup_demographicCloud" style="margin-bottom: 15px; display: none;">
+
+    <strong>Demographic Tags</strong>
+    
+    <hr>
+
+
+
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+if(!orbisApp.orbisAjax)
+{
+orbisApp.orbisAjax = new Object();
+}
+
+orbisApp.orbisAjax["tagCloud1062394337"] = {
+load : function(){
+    var request = {
+        action : '_-_-6WfNPuLrIn3GK-hhDLgRU2AlDwlUkyqNuiJ-9lXyl4f7eOC8TVU_PMGylEANWHWq3tBrGg_kVvFaAE79RbKGUesp2ZzaCXYE9BmrQw9c34W7GL1Pp_tuWayPB8TjkRa-gbJBUpEsfWn8hMrt9X6hAC3Q35Re72xSYlCQ7yn3NLTM6uhOz-l4jC2nD49A7vbRsEJoEGidGag_r3U9RRXfSSulw9Gguu6qG2q9zu2t_h0',
+        rand : Math.floor(Math.random() * 100000)
+    };
+
+    
+        $.extend(request, $.extend({postingId : 203132}, {tagCloudPanelId: 'tagCloudPanel71612369', cloudKey : 'demographicCloud', unassignableFromLookup : ''}));
+    
+    
+    $("div#tagCloud1062394337").load("", request, function(responseText, textStatus, xhr) {
+        if (orbisApp.checkAjaxResponse(xhr)) {
+            
+        }
+    });
+},
+manualLoad : function(){
+    $("div#tagCloud1062394337").find(".manualLoad").remove();
+    $("div#tagCloud1062394337").find(".ajaxLoader").removeClass("hide");
+    orbisApp.orbisAjax['tagCloud1062394337'].load();
+},
+placeholder : $("div#tagCloud1062394337")
+};
+</script>
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        orbisApp.orbisAjax["tagCloud1062394337"].load();
+    });
+</script>
+
+
+
+<div id="tagCloud1062394337" style="">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+    
+        params.assign.push('npdtt');
+    
+    $("#tagsLookup").trigger("taKeyLoaded");
+});
+</script>
+
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#tagsLookup").on("tagAssigned", function(){
+        orbisApp.orbisAjax.tagCloud1062394337.load();
+    });
+});
+</script>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="tagGroup" id="tagGroup_industryCloud" style="margin-bottom: 15px; display: none;">
+
+    <strong>Industry Tags</strong>
+    
+    <hr>
+
+
+
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+if(!orbisApp.orbisAjax)
+{
+orbisApp.orbisAjax = new Object();
+}
+
+orbisApp.orbisAjax["tagCloud1877378096"] = {
+load : function(){
+    var request = {
+        action : '_-_-Jv5_dTEyZHv--G5qtvwF5xDKNbFSRQmYtAWYRgL0nh-FWKYgPuroT7PEnGojwU392DbSXP7rnuceTfnf35IfKENkxrqYlSsVo6VB4V82Bq6k1KvzCxSxr1ZgSwC06PFO6ZGb0GEKm0lMiI29jBS4JRqAqipPTRfeOPS0LXMfqACq1TX6MtWNaRfvP4ibSvtzg4b9wFQLpUTbXVecDgz-rWDk6IEqYiuBfJjCbtPycp4',
+        rand : Math.floor(Math.random() * 100000)
+    };
+
+    
+        $.extend(request, $.extend({postingId : 203132}, {tagCloudPanelId: 'tagCloudPanel71612369', cloudKey : 'industryCloud', unassignableFromLookup : ''}));
+    
+    
+    $("div#tagCloud1877378096").load("", request, function(responseText, textStatus, xhr) {
+        if (orbisApp.checkAjaxResponse(xhr)) {
+            
+        }
+    });
+},
+manualLoad : function(){
+    $("div#tagCloud1877378096").find(".manualLoad").remove();
+    $("div#tagCloud1877378096").find(".ajaxLoader").removeClass("hide");
+    orbisApp.orbisAjax['tagCloud1877378096'].load();
+},
+placeholder : $("div#tagCloud1877378096")
+};
+</script>
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        orbisApp.orbisAjax["tagCloud1877378096"].load();
+    });
+</script>
+
+
+
+<div id="tagCloud1877378096" style="">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+    
+        params.assign.push('npitt');
+    
+    $("#tagsLookup").trigger("taKeyLoaded");
+});
+</script>
+
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#tagsLookup").on("tagAssigned", function(){
+        orbisApp.orbisAjax.tagCloud1877378096.load();
+    });
+});
+</script>
+
+    
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="tagGroup" id="tagGroup_wtrCloud" style="margin-bottom: 15px; display: none;">
+
+    <strong>Work-Term Tags</strong>
+    
+    <hr>
+
+
+
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+if(!orbisApp.orbisAjax)
+{
+orbisApp.orbisAjax = new Object();
+}
+
+orbisApp.orbisAjax["tagCloud2004091966"] = {
+load : function(){
+    var request = {
+        action : '_-_-UTfFAbYpPhlxpUievSqF5w_M0XQ8YZQfxC36Q3s3RyMQiDGzotBS5RgnU4PHk0YAxWifdWG7__Om3IoUOYTp22kP-FuOe1DQyrMBRCDDGos2-zqWpSAATDiRgdGDDmTJfHJtKsXsW0uzaH1XzZiQm3OO9Z_GY5n_3kcdvObWUrwQ7T184MUiZBYZd9IZ27p57f0C_x9uNTcqNof6Fme-cu0MqHnJfW64A86f-cFa84k',
+        rand : Math.floor(Math.random() * 100000)
+    };
+
+    
+        $.extend(request, $.extend({postingId : 203132}, {tagCloudPanelId: 'tagCloudPanel71612369', cloudKey : 'wtrCloud', unassignableFromLookup : ''}));
+    
+    
+    $("div#tagCloud2004091966").load("", request, function(responseText, textStatus, xhr) {
+        if (orbisApp.checkAjaxResponse(xhr)) {
+            
+        }
+    });
+},
+manualLoad : function(){
+    $("div#tagCloud2004091966").find(".manualLoad").remove();
+    $("div#tagCloud2004091966").find(".ajaxLoader").removeClass("hide");
+    orbisApp.orbisAjax['tagCloud2004091966'].load();
+},
+placeholder : $("div#tagCloud2004091966")
+};
+</script>
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        orbisApp.orbisAjax["tagCloud2004091966"].load();
+    });
+</script>
+
+
+
+<div id="tagCloud2004091966" style="">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+    
+        params.assign.push('wtrt');
+    
+    $("#tagsLookup").trigger("taKeyLoaded");
+});
+</script>
+
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#tagsLookup").on("tagAssigned", function(){
+        orbisApp.orbisAjax.tagCloud2004091966.load();
+    });
+});
+</script>
+
+    
+
+            
+        </div>
+    </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+</div>
+</div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+</main>
+<!--	Footer	-->
+<div class="is--spiral--robot">
+    <footer class="footer--bottom display--flex padding--l--m">
+        <p class="copyright-text display--flex align--middle margin--a--none">
+            ©
+            2025
+                Wilfrid Laurier University - Orbis Outcome v4.22
+        </p>
+        <nav class="float--right display--flex align--middle">
+            <ul class="list--plain" style="font-size:12px; margin-right: 108px;">
+                <li class="display--inline-block">
+                    <a class="color--font--white" href="/myAccount">
+                        Dashboard
+                    </a>
+                    &nbsp; | &nbsp;
+                </li>
+
+                <li class="display--inline-block">
+                    <a class="color--font--white sel_LogoutTest" href="/logout.htm">
+                        Log Out
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </footer>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="/core/spiralRobot/scripts/spiralRobot/0.31/SpiralRobot.js" charset="UTF-8"></script>
+<script type="text/javascript">orbisScriptManager.scriptLoaded('/core/spiralRobot/scripts/spiralRobot/0.31/SpiralRobot.js');</script>
+
+<script type="text/javascript">orbisScriptManager.loadScript('https://orbisv4head.blob.core.windows.net/core/spiralRobot/lib/perfect-scrollbar/1.4.0/perfect-scrollbar.min.js');</script>
+
+
+<script type="text/javascript" src="https://orbisv4head.blob.core.windows.net/core/spiralRobot/lib/js/jquery.tokenize.js"></script>
+<script type="text/javascript" src="https://orbisv4head.blob.core.windows.net/core/spiralRobot/lib/js/protip.min.js"></script>
+<script type="text/javascript" src="https://orbisv4head.blob.core.windows.net/core/spiralRobot/lib/js/modernizr.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+$('.js--btn--nav-dropdown-arrow').click(function(){
+    $(this).toggleClass('is--expanded');
+    $(this).parent().toggleClass('is--expanded');
+});
+
+$(".nav__list .is--active").parents("li.nav__list-item:not(:first)").addClass("is--expanded");
+});
+
+$(document).ready(function(){
+if($('.navigation--mobile').length) {
+    $('.navigation--mobile').perfectScrollbar();
+}
+});
+
+/* $(document).ready(function(){
+    $('button').addClass('has--ripple btn--ripple');
+}); */
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="protip-container protip-skin-default protip-skin-default--size-normal protip-skin-default--scheme-pro tip--default" data-pt-identifier="17467192998969246" style="max-width:300px"><span class="protip-arrow"></span><div class="protip-content" role="tooltip" aria-hidden="true" id="tooltipContent84712"></div></div><div class="protip-container protip-skin-default protip-skin-default--size-normal protip-skin-default--scheme-pro tip--default" data-pt-identifier="17467192998985709" style="max-width:300px"><span class="protip-arrow"></span><div class="protip-content" role="tooltip" aria-hidden="true" id="tooltipContent2339"></div></div><div class="protip-container protip-skin-default protip-skin-default--size-normal protip-skin-default--scheme-pro tip--default" data-pt-identifier="17467192999015788" style="max-width:300px"><span class="protip-arrow"></span><div class="protip-content" role="tooltip" aria-hidden="true" id="tooltipContent36522"></div></div></body>

@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "CoopBoard Sender Info Collector",
+  "version": "1.0",
+  "description": "A browser extension to collect and display job contact information from the Laurier co-op board.",
+  "permissions": ["activeTab", "scripting"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "index.html"
+  }
+}
