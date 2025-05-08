@@ -1,7 +1,7 @@
 # CoopBoardSenderInfo
  A browser extension to collect and copy the data in the job contact section on the Laurier co-op board.
 
-#How to use
+# How to use
  (Regular Install)
  1. Download all files and put them in a folder.
  2. Go to your browser extensions. (Look for the three dots at the top then navigate to "Extensions", or find a puzzle piece up at the URL bar)
@@ -27,16 +27,17 @@
  8. Verify contact info is correct.
  9. Click "Copy to Clipboard" and paste your nicely formatted contact info!
 
-#Copy formatting
+# Copy Formatting
+----------------------------
  The default formatting is as follows:
- ----------------------------
+""" 
  FirstName LastName
  Contact Title
  Address
  City, Province PostalCode
 
  Dear Salutation LastName,
- ----------------------------
+"""
  You can customize this by modifying the format in popup.js if desired.
 
  Note: This is a roughly made extension that might not work all the time but that's good enough for me so it better be good enough for you.
