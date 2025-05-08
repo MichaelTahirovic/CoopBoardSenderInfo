@@ -1,0 +1,15 @@
+{
+    "manifest_version": 3,
+    "name": "Co-op Org Info Scraper",
+    "version": "1.0",
+    "description": "Scrapes the ORGANIZATION INFORMATION FOR JOB POSTING table and builds a cover-letter TO header.",
+    "permissions": [
+      "scripting",
+      "activeTab",
+      "clipboardWrite"
+    ],
+    "action": {
+      "default_popup": "popup.html"
+    }
+  }
+  
