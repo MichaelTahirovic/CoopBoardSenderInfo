@@ -2,7 +2,7 @@
  A browser extension to collect and copy the data in the job contact section on the Laurier co-op board.
 
 # How to use
- (Regular Install)
+ ## (Regular Install)
  1. Download all files and put them in a folder.
  2. Go to your browser extensions. (Look for the three dots at the top then navigate to "Extensions", or find a puzzle piece up at the URL bar)
  3. Click "Manage Extensions".
@@ -16,7 +16,7 @@
  10. Verify contact info is correct.
  11. Click "Copy to Clipboard" and paste your nicely formatted contact info!
 
- (Quick Install) (If your browser doesn't think this is a virus LOL)
+ ## (Quick Install) (If your browser doesn't think this is a virus LOL)
  1. Download CoopBoardSenderInfo.crx
  2. Go to your browser extensions.
  3. Click and drag the .crx file onto your browser.
@@ -27,7 +27,7 @@
  8. Verify contact info is correct.
  9. Click "Copy to Clipboard" and paste your nicely formatted contact info!
 
-# Copy Formatting
+## Copy Formatting
  The default formatting is as follows:
  ```
  FirstName LastName
@@ -39,6 +39,7 @@
  ```
  You can customize this by modifying the format in popup.js if desired.
 
- Note: This is a roughly made extension that might not work all the time but that's good enough for me so it better be good enough for you.
+# Final Regards
+ This is a roughly made extension that might not work all the time and doesn't look very pretty but that's good enough for me so it better be good enough for you.
 
  Enjoy saving like... 40 seconds!
