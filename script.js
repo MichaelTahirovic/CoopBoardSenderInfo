@@ -1,43 +1,71 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Define a mapping of labels to IDs in index.html
-    const labelToIdMap = {
-        "Organization:": "Organization",
-        "Salutation:": "Salutation",
-        "Job Contact First Name:": "JobContactFirstName",
-        "Job Contact Last Name:": "JobContactLastName",
-        "Contact Title:": "ContactTitle",
-        "Website:": "Website",
-        "Address Line One:": "AddressLineOne",
-        "City:": "City",
-        "Province / State:": "ProvinceState",
-        "Postal Code / Zip Code:": "PostalCodeZipCode",
-        "Country:": "Country"
+    // Define a mapping of browser classes to IDs in index.html
+    const classToIdMap = {
+        "np-view-question--3": "Salutation",
+        "np-view-question--4": "JobContactFirstName",
+        "np-view-question--5": "JobContactLastName",
+        "np-view-question--6": "ContactTitle",
+        "np-view-question--9": "Website",
+        "np-view-question--10": "AddressLineOne",
+        "np-view-question--12": "City",
+        "np-view-question--13": "ProvinceState",
+        "np-view-question--14": "PostalCodeZipCode",
+        "np-view-question--15": "Country"
     };
 
-    // Find the table containing the data
-    const table = document.querySelector(".panel-body table");
-    if (!table) {
-        console.error("Data table not found.");
-        return;
-    }
-
-    // Loop through each row in the table and extract data
-    const rows = table.querySelectorAll("tr");
-    rows.forEach(row => {
-        const labelElement = row.querySelector("td:first-child strong");
-        const valueElement = row.querySelector("td:last-child");
-        if (labelElement && valueElement) {
-            const label = labelElement.textContent.trim();
-            const value = valueElement.textContent.trim();
-
-            // Check if the label matches one in the mapping
-            if (labelToIdMap[label]) {
-                const targetId = labelToIdMap[label];
-                const targetElement = document.getElementById(targetId);
-                if (targetElement) {
-                    targetElement.textContent = value;
-                }
+    // Function to populate content dynamically
+    const populateContent = () => {
+        Object.entries(classToIdMap).forEach(([className, elementId]) => {
+            // Select all elements with the given class name
+            const elements = document.querySelectorAll(`.${className}`);
+            if (elements.length === 0) {
+                console.warn(`No elements found for class: ${className}`);
+                return;
             }
+
+            // Extract and join the text content of all matching <span> elements
+            const content = Array.from(elements)
+                .map(el => el.textContent.trim())
+                .filter(text => text.length > 0) // Ensure non-empty text
+                .join(", ") || "No data found.";
+
+            // Find the target element by ID and update its content
+            const targetElement = document.getElementById(elementId);
+            if (targetElement) {
+                targetElement.textContent = content;
+                console.log(`Updated #${elementId} with content: "${content}"`);
+            } else {
+                console.warn(`No target element found with ID: ${elementId}`);
+            }
+        });
+    };
+
+    // Initial population of content
+    populateContent();
+
+    // Set up a MutationObserver to watch for changes in the DOM
+    const observer = new MutationObserver(() => {
+        console.log("DOM changed, re-checking for elements...");
+        populateContent();
+    });
+
+    // Start observing the document body for changes
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // Send the parsed data back to the background script
+    const parsedData = Object.entries(classToIdMap).map(([className, elementId]) => {
+        const elements = document.querySelectorAll(`span.${className}`);
+        return {
+            className,
+            content: Array.from(elements)
+                .map(el => el.textContent.trim())
+                .filter(text => text.length > 0) // Ensure non-empty text
+        };
+    });
+
+    chrome.runtime.sendMessage({ type: "parsedData", data: parsedData }, (response) => {
+        if (response && response.status === "success") {
+            console.log("Data sent successfully to the background script.");
         }
     });
 });
