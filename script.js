@@ -1,4 +1,7 @@
-document.addEventListener("DOMContentLoaded", function () {
+(() => {
+document.addEventListener("DOMContentLoaded", parseContact);
+
+async function parseContact() {
     // Define a mapping of browser classes to IDs in index.html
     const classToIdMap = {
         "np-view-question--3": "Salutation",
@@ -68,4 +71,4 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log("Data sent successfully to the background script.");
         }
     });
-});
+}})();

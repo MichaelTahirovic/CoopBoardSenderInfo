@@ -1,7 +1,15 @@
 chrome.action.onClicked.addListener((tab) => {
+  console.log("Injecting script into tab:", tab.id);
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
-    files: ["newscript.js"]
+    files: ["testScript.js"],
+    world: "MAIN"
+  }, () => {
+    if (chrome.runtime.lastError) {
+      console.error("Script injection failed:", chrome.runtime.lastError.message);
+    } else {
+      console.log("Script injected successfully.");
+    }
   });
 });
 
