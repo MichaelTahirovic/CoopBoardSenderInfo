@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "Co-op Org Info Scraper",
-    "version": "1.0",
-    "description": "Scrapes the ORGANIZATION INFORMATION FOR JOB POSTING table and builds a cover-letter TO header.",
+    "name": "Navigator Co-op Contact Copy Tool",
+    "version": "1.0.0",
+    "description": "Scrapes Navigator co-op board to collect contact info. Allows for easy copying of contact info. Made by Michael Tahirovic 2025.",
     "permissions": [
       "scripting",
       "activeTab",
