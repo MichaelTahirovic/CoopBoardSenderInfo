@@ -1,77 +1,87 @@
-// When the popup opens, scrape the page by class names instead of the table
+// popup.js
 document.addEventListener('DOMContentLoaded', () => {
     const infoContainer = document.getElementById('infoContainer');
-    const copyBtn = document.getElementById('copyBtn');
-    let orgData = {};
+    const copyBtn       = document.getElementById('copyBtn');
   
-    // 1. Inject a script into the active tab to grab all .np-view-question--# elements
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    // the only state we need
+    let orgData = {};      // for lookup by label
+    let orgList = [];      // ordered [{key,val},…]
+  
+    // 1) pull from page
+    chrome.tabs.query({active: true, currentWindow: true}, tabs => {
       chrome.scripting.executeScript({
         target: { tabId: tabs[0].id },
         func: () => {
-          // list out all the class suffixes we care about
-          const classNums = [3, 4, 5, 6, 9, 10, 12, 13, 14, 15];
-          const data = {};
+          const classNums = [3,4,5,6,9,10,12,13,14,15];
+          const out = [];
   
           classNums.forEach(n => {
-            // grab the container for this question
             const container = document.querySelector(`.np-view-question--${n}`);
             if (!container) return;
   
-            // you might need to adjust these two queries to match your markup:
-            //    - `.question-label` → selector for the field name text
-            //    - `.question-answer` → selector for the field value text
-            const labelEl = container.querySelector('.question-label') 
-                          || container.querySelector('label') 
-                          || container;
-            const valueEl = container.querySelector('.question-answer') 
-                          || container.querySelector('.answer') 
-                          || container.nextElementSibling 
-                          || container;
+            const row = container.closest('tr');
+            if (!row) return;
   
-            const key = labelEl.innerText.trim();
-            const val = valueEl.innerText.trim();
-            data[key] = val;
+            const cells = row.querySelectorAll('td');
+            if (cells.length < 2) return;
+  
+            out.push({
+              key: cells[0].innerText.trim(),
+              val: cells[1].innerText.trim()
+            });
           });
   
-          return data;
+          return out;
         }
-      }, (results) => {
-        const result = results[0].result;
-        if (!result || Object.keys(result).length === 0) {
+      }, results => {
+        const dataList = results[0].result || [];
+        if (!dataList.length) {
           infoContainer.innerText = 'No organization info found.';
           copyBtn.disabled = true;
           return;
         }
-        orgData = result;
   
-        // render into our popup
+        // store both list & lookup object
+        orgList = dataList;
+        orgData = {};
+        dataList.forEach(({key,val}) => { orgData[key] = val; });
+  
+        // render in-pupup, in order
         infoContainer.innerHTML = '';
-        Object.entries(orgData).forEach(([k, v]) => {
+        orgList.forEach(({key,val}) => {
           const div = document.createElement('div');
           div.className = 'field';
-          div.textContent = `${k}: ${v}`;
+          div.textContent = `${key} ${val}`;   // no extra colon
           infoContainer.appendChild(div);
+        });
+  
+        // now that orgData exists, enable & wire up Copy
+        copyBtn.disabled = false;
+        copyBtn.addEventListener('click', () => {
+          // ** Customize this TO: template as needed **
+          /*FirstName LastName
+            Contact Title
+            Address
+            City, Province PostalCode
+
+            Dear Salutation LastName, */
+          let text = '';
+          text += `${orgData['Job Contact First Name:'] || ''} ${orgData['Job Contact Last Name:'] || ''}\n`;
+          text += `${orgData['Contact Title:'] || ''}\n`;
+          text += `${orgData['Address Line One:'] || ''}\n`;
+          text += `${orgData['City:'] || ''}, ${orgData['Province / State:'] || ''} ${orgData['Postal Code / Zip Code:'] || ''}\n\n`;
+          text += `Dear ${orgData['Salutation:'] || ['Job Contact First Name:'] || ''} ${orgData['Job Contact Last Name:'] || ''},\n\n`;
+  
+          navigator.clipboard.writeText(text)
+            .then(() => {
+              copyBtn.textContent = 'Copied!';
+              setTimeout(() => copyBtn.textContent = 'Copy to Clipboard', 1500);
+            })
+            .catch(() => {
+              copyBtn.textContent = 'Error';
+            });
         });
       });
     });
-  
-    // 2. Copy as cover-letter TO: header when button clicked
-    copyBtn.addEventListener('click', () => {
-      // Customize this template to change formatting!
-      let text = '';
-      text += `To: ${orgData['Organization Name'] || ''}\n`;
-      text += `${orgData['Address'] || ''}\n`;
-      text += `${orgData['City, Province/State, Postal Code'] || ''}\n\n`;
-      text += `Re: ${orgData['Job Title'] || ''} (${orgData['Job ID'] || ''})\n`;
-  
-      navigator.clipboard.writeText(text)
-        .then(() => {
-          copyBtn.textContent = 'Copied!';
-          setTimeout(() => copyBtn.textContent = 'Copy to Clipboard', 1500);
-        })
-        .catch(() => {
-          copyBtn.textContent = 'Error';
-        });
-    });
   });
+  
